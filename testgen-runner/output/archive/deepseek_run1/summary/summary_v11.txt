@@ -1,0 +1,17 @@
+version=v11
+model=deepseek-coder:6.7b
+generation_profile=baseline_behavior
+cut=D:\Project\testgen-lab\src\main\java\version\Version.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\VersionTest_v11.java
+activated_test=D:\Project\testgen-lab\src\test\java\version\VersionTest.java
+mvn_test=SUCCESS
+pitest=SUCCESS
+baseline_mutation_score=11/19
+augmented_mutation_score=13/19
+tests_generated=8
+repair_attempts=0
+augmentation_success=yes
+augmentation_programmatic_fix_used=No
+
+Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
+11	deepseek-coder:6.7b	18:29	18:31	1.4	0	0	-	Success	-	No	11/19	13/19	8	yes

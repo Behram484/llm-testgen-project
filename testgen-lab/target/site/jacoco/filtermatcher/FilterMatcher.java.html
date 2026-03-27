@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FilterMatcher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">filtermatcher</a> &gt; <span class="el_source">FilterMatcher.java</span></div><h1>FilterMatcher.java</h1><pre class="source lang-java linenums">package filtermatcher;
+
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+public class FilterMatcher
+{
+   private String _sqlOrMetaDataMatchString;
+<span class="nc" id="L9">   private ArrayList&lt;Pattern&gt; _includeFilterPatterns = new ArrayList&lt;Pattern&gt;();</span>
+<span class="nc" id="L10">   private ArrayList&lt;Pattern&gt; _excludeFilterPatterns = new ArrayList&lt;Pattern&gt;();</span>
+
+   public FilterMatcher(String filterInclude, String filterExclude)
+<span class="nc" id="L13">   {</span>
+<span class="nc bnc" id="L14" title="All 2 branches missed.">      if(null != filterInclude)</span>
+      {
+<span class="nc" id="L16">         String[] splits = filterInclude.split(&quot;,&quot;);</span>
+
+<span class="nc bnc" id="L18" title="All 2 branches missed.">         for (int i = 0; i &lt; splits.length; i++)</span>
+         {
+
+
+<span class="nc bnc" id="L22" title="All 2 branches missed.">            if(0 &lt; splits[i].trim().length())</span>
+            {
+<span class="nc" id="L24">               String regExStr = splits[i].replaceAll(&quot;\\.&quot;, &quot;\\\\.&quot;)</span>
+<span class="nc" id="L25">                                          .replaceAll(&quot;%&quot;, &quot;.*&quot;)</span>
+<span class="nc" id="L26">                                          .replaceAll(&quot;_&quot;,&quot;.{1}&quot;);</span>
+
+<span class="nc" id="L28">               _includeFilterPatterns.add(Pattern.compile(regExStr, Pattern.CASE_INSENSITIVE));</span>
+
+<span class="nc bnc" id="L30" title="All 2 branches missed.">               if(1 == _includeFilterPatterns.size())</span>
+               {
+<span class="nc" id="L32">                  _sqlOrMetaDataMatchString = splits[i];</span>
+               }
+
+
+            }
+         }
+      }
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">      if(null != filterExclude)</span>
+      {
+<span class="nc" id="L42">         String[] splits = filterExclude.split(&quot;,&quot;);</span>
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">         for (int i = 0; i &lt; splits.length; i++)</span>
+         {
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if(0 &lt; splits[i].trim().length())</span>
+            {
+<span class="nc" id="L48">               String regExStr = splits[i].replaceAll(&quot;\\.&quot;, &quot;\\\\.&quot;)</span>
+<span class="nc" id="L49">                                          .replaceAll(&quot;%&quot;, &quot;.*&quot;)</span>
+<span class="nc" id="L50">                                          .replaceAll(&quot;_&quot;,&quot;.{1}&quot;);</span>
+
+<span class="nc" id="L52">               _excludeFilterPatterns.add(Pattern.compile(regExStr, Pattern.CASE_INSENSITIVE));</span>
+            }
+         }
+      }
+<span class="nc" id="L56">   }</span>
+
+
+   public boolean matches(String simpleObjectName)
+   {
+<span class="nc bnc" id="L61" title="All 4 branches missed.">      return matchesPatterns(simpleObjectName, _includeFilterPatterns, false) &amp;&amp; !matchesPatterns(simpleObjectName, _excludeFilterPatterns, true);</span>
+   }
+
+   private boolean matchesPatterns(String simpleObjectName, ArrayList&lt;Pattern&gt; patterns, boolean exclude)
+   {
+      boolean matchesPatterns;
+
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      if(exclude)</span>
+      {
+<span class="nc" id="L70">         matchesPatterns = false;</span>
+      }
+      else
+      {
+<span class="nc bnc" id="L74" title="All 2 branches missed.">         matchesPatterns = (0 == patterns.size());</span>
+      }
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">      for (Pattern includeFilterPattern : patterns)</span>
+      {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">         if(includeFilterPattern.matcher(simpleObjectName).matches())</span>
+         {
+<span class="nc" id="L81">            matchesPatterns = true;</span>
+<span class="nc" id="L82">            break;</span>
+         }
+<span class="nc" id="L84">      }</span>
+<span class="nc" id="L85">      return matchesPatterns;</span>
+   }
+
+   public String getMetaDataMatchString()
+   {
+<span class="nc" id="L90">      return _sqlOrMetaDataMatchString;</span>
+   }
+
+   public String getSqlLikeMatchString()
+   {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">      if(null != _sqlOrMetaDataMatchString)</span>
+      {
+<span class="nc" id="L97">         return _sqlOrMetaDataMatchString;</span>
+      }
+      else
+      {
+<span class="nc" id="L101">         return &quot;%&quot;;</span>
+      }
+   }
+
+   public static void main(String[] args)
+   {
+<span class="nc" id="L107">      boolean b = new FilterMatcher(&quot;Geer%&quot;, null).matches(&quot;Gerhard&quot;);</span>
+
+<span class="nc" id="L109">      System.out.println(b);</span>
+
+<span class="nc" id="L111">   }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

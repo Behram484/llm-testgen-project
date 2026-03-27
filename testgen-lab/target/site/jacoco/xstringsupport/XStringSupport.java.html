@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>XStringSupport.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">xstringsupport</a> &gt; <span class="el_source">XStringSupport.java</span></div><h1>XStringSupport.java</h1><pre class="source lang-java linenums">package xstringsupport;
+
+/**
+ * &lt;code&gt;XStringSupport&lt;/code&gt;is a collection of helpful methods concerning
+ * string handling.
+ * 
+ * @author Stephan Düwel
+ */
+<span class="nc" id="L9">public class XStringSupport</span>
+{
+
+	/**
+	 * &lt;code&gt;getNumberString&lt;/code&gt; constructs a string out of an integer
+	 * value. The number representation is decimal. The string is filled with
+	 * leading zeros to reach a specified length. In case of negative values,
+	 * the zeros are inserted between the minus sign and the number.
+	 * 
+	 * @param number the integer value to be represented as a string
+	 * @param length the desired length of the string representation
+	 * @return the string representation of &lt;code&gt;number&lt;/code&gt;
+	 */
+	public static String getNumberString(int number, int length)
+	{
+		// ordinary conversion
+<span class="fc" id="L25">		StringBuffer numString = new StringBuffer();</span>
+<span class="fc" id="L26">		numString.append(number);</span>
+		// length check
+<span class="fc bfc" id="L28" title="All 2 branches covered.">		if (numString.length() &gt; length)</span>
+<span class="fc" id="L29">			throw new IllegalArgumentException(&quot;Number too long&quot;);</span>
+		// filling in zeros
+<span class="fc" id="L31">		StringBuffer buffer = null;</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">		if (length &gt; numString.length())</span>
+		{
+<span class="fc" id="L34">			buffer = new StringBuffer(length - numString.length());</span>
+			// space for zeros
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">			if (number &lt; 0)</span>
+			{ // negative number
+<span class="nc" id="L38">				buffer.append('-');</span>
+<span class="nc" id="L39">				numString.deleteCharAt(0);</span>
+				// sign already handled
+			} // if (number&lt;0)
+			// only zeros left to fill in
+<span class="fc bfc" id="L43" title="All 2 branches covered.">			for (int i = 0; i &lt; length - numString.length(); i++)</span>
+<span class="fc" id="L44">				buffer.append('0');</span>
+			// number behind all zeros
+<span class="fc" id="L46">			buffer.append(numString);</span>
+		} // then (length&gt;numString.length())
+		else
+<span class="nc" id="L49">			buffer = numString;</span>
+<span class="fc" id="L50">		return buffer.toString();</span>
+	} // getNumberString(int number, int length)
+
+	/**
+	 * &lt;code&gt;successorUsualChars&lt;/code&gt; computes the successor string in
+	 * lexicographic order. The method set only characters with ASCII codes
+	 * between 32 and 126 to ensure that they can be properly displayed. The
+	 * successor of other characters is ' ' (ASCII 32).
+	 * 
+	 * @param s the predecessor string
+	 * @param lengthFix if set to &lt;code&gt;true&lt;/code&gt;, the string length is
+	 *            never augmented, in case of an overflow the blank string will
+	 *            be returned
+	 * @return the successor string (obeying the described constraints)
+	 */
+	public static String successorUsualChars(String s, boolean lengthFix)
+	{
+<span class="fc" id="L67">		char[] content = s.toCharArray();</span>
+<span class="fc" id="L68">		boolean overflow = true;</span>
+		// overflow in the actually examined string position
+<span class="fc bfc" id="L70" title="All 4 branches covered.">		for (int i = content.length - 1; overflow &amp;&amp; i &gt; -1; i--)</span>
+		{ // loop from the string end until the successor is found or
+			// the string begin is reached
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">			if (content[i] &lt; 32)</span>
+			{ // control character - jum to ' '
+<span class="nc" id="L75">				content[i] = ' ';</span>
+<span class="nc" id="L76">				overflow = false;</span>
+				// successor found
+			} // if (content[i]&lt;32)
+<span class="fc bfc" id="L79" title="All 2 branches covered.">			else if (content[i] &gt; 125)</span>
+<span class="fc" id="L80">				content[i] = ' ';</span>
+			else
+			{ // ASCII code between 32 and 125 - augment it by 1
+<span class="fc" id="L83">				content[i]++;</span>
+<span class="fc" id="L84">				overflow = false;</span>
+				// successor found
+			} // else (content[i]&gt;125)
+		} // for (int i=content.length-1; overflow&amp;&amp;i&gt;-1; i--)
+<span class="fc" id="L88">		s = new String(content);</span>
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">		if (!lengthFix &amp;&amp; overflow)</span>
+<span class="fc" id="L90">			s = ' ' + s;</span>
+<span class="fc" id="L91">		return s;</span>
+	} // successorUsualChars(String s, boolean lengthFix)
+
+	/**
+	 * Replaces all occurences of &lt;code&gt;marker&lt;/code&gt; in &lt;code&gt;text&lt;/code&gt;
+	 * with &lt;code&gt;replacement&lt;/code&gt;.
+	 * &lt;p&gt;
+	 * &lt;dl&gt;
+	 * &lt;dt&gt;&lt;i&gt;Example:&lt;/i&gt;&lt;br&gt;
+	 * &lt;dd&gt;&lt;i&gt;before:&lt;/i&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Input_&lt;b&gt;DEALERNUMBER&lt;/b&gt;_&lt;b&gt;WILDCARD&lt;/b&gt;.xml&lt;br&gt;
+	 * &lt;dd&gt;&lt;i&gt;after:&lt;/i&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Input_&lt;b&gt;12345&lt;/b&gt;_&lt;b&gt;parts&lt;/b&gt;.xml
+	 * &lt;/dl&gt;
+	 * 
+	 * @param text text which all occurences of marker must be replaced
+	 * @param marker text marker to be replaced
+	 * @param replacement replaced text
+	 */
+	public static String replaceAll(String text, String marker,
+			String replacement)
+	{
+		int pos;
+<span class="nc" id="L112">		StringBuffer work = new StringBuffer(text);</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">		while ((pos = text.indexOf(marker)) &gt;= 0)</span>
+		{
+<span class="nc" id="L115">			work.replace(pos, pos + marker.length(), replacement);</span>
+<span class="nc" id="L116">			text = new String(work);</span>
+		}
+<span class="nc" id="L118">		return new String(work);</span>
+	}
+
+	public static String replaceFirst(String text, String marker,
+			String replacement, int fromPosition)
+	{
+		int pos;
+<span class="nc" id="L125">		StringBuffer work = new StringBuffer(text);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">		if ((pos = text.indexOf(marker, fromPosition)) &gt;= 0)</span>
+		{
+<span class="nc" id="L128">			work.replace(pos, pos + marker.length(), replacement);</span>
+<span class="nc" id="L129">			text = new String(work);</span>
+		}
+<span class="nc" id="L131">		return new String(work);</span>
+	}
+} // XStringSupport
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

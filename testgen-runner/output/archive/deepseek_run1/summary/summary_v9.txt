@@ -1,0 +1,17 @@
+version=v9
+model=deepseek-coder:6.7b
+generation_profile=baseline_behavior
+cut=D:\Project\testgen-lab\src\main\java\wildcard\Wildcard.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\WildcardTest_v9.java
+activated_test=D:\Project\testgen-lab\src\test\java\wildcard\WildcardTest.java
+mvn_test=SUCCESS
+pitest=SUCCESS
+baseline_mutation_score=18/22
+augmented_mutation_score=-
+tests_generated=7
+repair_attempts=0
+augmentation_success=no
+augmentation_programmatic_fix_used=Yes
+
+Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
+9	deepseek-coder:6.7b	18:31	18:31	0.9	0	0	-	Success	-	No	18/22	-	7	no

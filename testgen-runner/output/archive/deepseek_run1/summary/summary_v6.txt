@@ -1,0 +1,17 @@
+version=v6
+model=deepseek-coder:6.7b
+generation_profile=baseline_behavior
+cut=D:\Project\testgen-lab\src\main\java\stringlink\StringLink.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\StringLinkTest_v6.java
+activated_test=D:\Project\testgen-lab\src\test\java\stringlink\StringLinkTest.java
+mvn_test=SUCCESS
+pitest=SUCCESS
+baseline_mutation_score=8/15
+augmented_mutation_score=-
+tests_generated=3
+repair_attempts=0
+augmentation_success=no
+augmentation_programmatic_fix_used=No
+
+Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
+6	deepseek-coder:6.7b	18:22	18:22	0.6	0	0	-	Success	-	No	8/15	-	3	no

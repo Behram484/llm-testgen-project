@@ -1,0 +1,3 @@
+- instantiateWildcard: surviving mutant indicates behavior is insufficiently tested.
+- isWildcard: surviving mutant indicates behavior is insufficiently tested.
+- matchWildcard: surviving mutant indicates behavior is insufficiently tested.

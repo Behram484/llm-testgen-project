@@ -1,0 +1,17 @@
+version=v10
+model=deepseek-coder:6.7b
+generation_profile=baseline_behavior
+cut=D:\Project\testgen-lab\src\main\java\htmlencoder\HtmlEncoder.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\HtmlEncoderTest_v10.java
+activated_test=D:\Project\testgen-lab\src\test\java\htmlencoder\HtmlEncoderTest.java
+mvn_test=SUCCESS
+pitest=SUCCESS
+baseline_mutation_score=6/7
+augmented_mutation_score=-
+tests_generated=5
+repair_attempts=0
+augmentation_success=no
+augmentation_programmatic_fix_used=Yes
+
+Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
+10	deepseek-coder:6.7b	18:08	18:08	0.8	0	0	-	Success	-	No	6/7	-	5	no

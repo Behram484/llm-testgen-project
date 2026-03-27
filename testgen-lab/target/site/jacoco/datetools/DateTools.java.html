@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DateTools.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">datetools</a> &gt; <span class="el_source">DateTools.java</span></div><h1>DateTools.java</h1><pre class="source lang-java linenums">package datetools;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * A general utility class for dealing with dates.
+ */
+public class DateTools {
+<span class="nc" id="L11">	public static final String DEFAULT_DATE_FORMAT = new String(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L12">	public static final String LONG_DATE_FORMAT = new String(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span>
+<span class="nc" id="L13">	private static final String[] POSSIBLE_DATE_FORMATS = new String[] {DEFAULT_DATE_FORMAT, LONG_DATE_FORMAT, &quot;MM/dd/yyyy&quot;, &quot;MM-dd-yyyy&quot;, &quot;yyyy&quot;};</span>
+
+	private DateTools() { }
+
+	/**
+	 * @param date A {@link Date} to format.
+	 * @return A String representation of the date parameter in
+	 * 		the {@link #DEFAULT_DATE_FORMAT default format}.
+	 */
+	public static String format(Date date) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		if(null == date) {</span>
+<span class="nc" id="L24">			return null;</span>
+		}
+<span class="nc" id="L26">		SimpleDateFormat formatter = new SimpleDateFormat(DEFAULT_DATE_FORMAT);</span>
+<span class="nc" id="L27">		return formatter.format(date);</span>
+	}
+
+	/**
+	 * @param date A {@link Date} to format.
+	 * @param format A format (corresponding to {@link SimpleDateFormat}'s syntax)
+	 * 		to convert the date to.
+	 * @return A String representation of the date parameter in the
+	 * 		specified format, or null if the given date is null.
+	 */
+	public static String format(Date date, String format) {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		if(null == date) {</span>
+<span class="nc" id="L39">			return null;</span>
+		}
+<span class="nc" id="L41">		SimpleDateFormat formatter = new SimpleDateFormat(format);</span>
+<span class="nc" id="L42">		return formatter.format(date);</span>
+ 	}
+
+	/**
+	 * @param dateString A String to parse into a {@link Date} object.
+	 * @return A {@link Date} representation of the String when possible,
+	 * 		or &lt;code&gt;null&lt;/code&gt; if the date cannot be parsed.
+	 */
+	public static Date parse(String dateString) {
+<span class="nc" id="L51">		Date ret = null;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if(null != dateString) {</span>
+<span class="nc" id="L53">			boolean match = false;</span>
+<span class="nc" id="L54">			SimpleDateFormat formatter = new SimpleDateFormat();</span>
+<span class="nc" id="L55">            formatter.setLenient(false);</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">			for(int i = 0; i &lt; POSSIBLE_DATE_FORMATS.length &amp;&amp; !match; ++i) {</span>
+<span class="nc" id="L57">				formatter.applyPattern(POSSIBLE_DATE_FORMATS[i]);</span>
+				try {
+<span class="nc" id="L59">					ret = formatter.parse(dateString);</span>
+<span class="nc" id="L60">					match = true;</span>
+<span class="nc" id="L61">				} catch(ParseException e) {</span>
+					// do nothing
+<span class="nc" id="L63">				}</span>
+			}
+		}
+<span class="nc" id="L66">		return ret;</span>
+	}
+
+	/**
+	 * @param dateString A String to parse into a {@link Date} object.
+	 * @param format A format to use to parse the date parameter with.
+	 * @return A {@link Date} representation of the String when possible,
+	 * 		or &lt;code&gt;null&lt;/code&gt; if the date cannot be parsed with the
+	 * 		given format.
+	 */
+	public static Date parse(String dateString, String format) {
+<span class="nc" id="L77">        Date ret = null;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		if(null != dateString) {</span>
+<span class="nc" id="L79">			SimpleDateFormat formatter = new SimpleDateFormat(format);</span>
+<span class="nc" id="L80">            formatter.setLenient(false);</span>
+			try {
+<span class="nc" id="L82">				ret = formatter.parse(dateString);</span>
+<span class="nc" id="L83">			} catch(ParseException e) {</span>
+				// do nothing
+<span class="nc" id="L85">			}</span>
+		}
+<span class="nc" id="L87">		return ret;</span>
+	}
+
+	/**
+	 * @param dateString A String that may or may not represent a
+	 * 		{@link Date} that can be parsed.
+	 * @return &lt;code&gt;true&lt;/code&gt; if a {@link Date} can be parsed from
+	 * 		the String, or &lt;code&gt;false&lt;/code&gt; otherwise.
+	 * @see #parse(String dateString)
+	 */
+	public static boolean isValidDate(String dateString) {
+<span class="nc" id="L98">		boolean match = false;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		if(null != dateString) {</span>
+<span class="nc" id="L100">			SimpleDateFormat formatter = new SimpleDateFormat();</span>
+<span class="nc" id="L101">            formatter.setLenient(false);</span>
+<span class="nc bnc" id="L102" title="All 4 branches missed.">			for(int i = 0; i &lt; POSSIBLE_DATE_FORMATS.length &amp;&amp; !match; ++i) {</span>
+<span class="nc" id="L103">				formatter.applyPattern(POSSIBLE_DATE_FORMATS[i]);</span>
+				try {
+<span class="nc" id="L105">					formatter.parse(dateString);</span>
+<span class="nc" id="L106">					match = true;</span>
+<span class="nc" id="L107">				} catch(ParseException e) {</span>
+					// do nothing
+<span class="nc" id="L109">				}</span>
+			}
+		}
+<span class="nc" id="L112">		return match;</span>
+	}
+
+	/**
+	 * @param dateString A String that may or may not represent a
+	 * 		{@link Date} that can be parsed with the given format.
+	 * @param format A format to use to check if the String can
+	 * 		be parsed into a {@link Date}.
+	 * @return &lt;code&gt;true&lt;/code&gt; if a {@link Date} can be parsed from
+	 * 		the String in the given format, or &lt;code&gt;false&lt;/code&gt;
+	 * 		otherwise.
+	 * @see #parse(String dateString, String format)
+	 */
+	public static boolean isValidDate(String dateString, String format) {
+<span class="nc" id="L126">		boolean match = false;</span>
+<span class="nc" id="L127">        SimpleDateFormat formatter = new SimpleDateFormat(format);</span>
+<span class="nc" id="L128">        formatter.setLenient(false);</span>
+		try {
+<span class="nc" id="L130">			formatter.parse(dateString);</span>
+<span class="nc" id="L131">			match = true;</span>
+<span class="nc" id="L132">		} catch(ParseException e) {</span>
+			// do nothing
+<span class="nc" id="L134">		}</span>
+<span class="nc" id="L135">		return match;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

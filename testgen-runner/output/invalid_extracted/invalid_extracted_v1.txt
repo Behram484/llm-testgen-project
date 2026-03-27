@@ -1,0 +1,51 @@
+package bytevector;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junitjupiter.api.Test;
+import org.junit.jupiter.api.Test;
+
+class ByteVectorTests {
+ private ByteVector byteVector;
+ 
+ @BeforeEach
+ void setup() {
+ byteVector = new ByteVector();
+ }
+ 
+ @Test
+ void testPutByteArray_whenGivenValidData_shouldReturnTheSameLength() {
+ // Given
+ byte[] data = new byte[]{1, 2, 3, 4};
+ 
+ // When
+ int result = byteVector.putByteArray(data, 0, data.length).getLength();
+ 
+ // Then
+ Assertions.assertEquals(result, data.length);
+ }
+ 
+ @Test
+ void testPutUTF8_whenGivenValidString_shouldReturnTheSameLength() {
+ // Given
+ String str = "Hello World";
+ 
+ // When
+ int result = byteVector.putUTF8(str).getLength();
+ 
+ // Then
+ Assertions.assertEquals(result, str.length());
+ }
+ 
+ @Test
+ void testEnlarge_whenGivenValidSizeIncrease_shouldReturnNewDataOfDoubleLength() {
+ // Given
+ byteVector.putByteArray(new byte[]{1, 2, 3, 4}, 0, 4);
+ 
+ // When
+ int result = byteVector.getData().length;
+ 
+ // Then
+ Assertions.assertEquals(result, 8);
+ }
+}

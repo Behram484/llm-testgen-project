@@ -1,0 +1,44 @@
+## Batch results — 2026-03-26 21:32
+
+| CUT | Status | reached | stuck_at | baseline | augmented | repair | elapsed |
+|-----|--------|---------|----------|----------|-----------|--------|---------|
+| ArrayUtil | SUCCESS | done | - | 22/57 | - | 4 | 270.8 |
+| Axis | SUCCESS | done | - | 39/40 | - | 0 | 94.8 |
+| Base32 | FAILED | generated | unknown | ? | - | ? | 232.9 |
+| Base64 | FAILED | generated | unknown | ? | - | ? | 444.6 |
+| Base64Coder | FAILED | generated | unknown | ? | - | ? | 342.5 |
+| BigDecimalUtil | SUCCESS | done | - | 4/6 | - | 0 | 56.9 |
+| BinaryDisplayConverter | FAILED | generated | unknown | ? | - | ? | 248.1 |
+| ByteVector | FAILED | llm_called | unknown | ? | - | ? | 27.8 |
+| Calculator | SUCCESS | done | - | 4/11 | - | 4 | 191.9 |
+| CamelCaseUtil | FAILED | generated | unknown | ? | - | ? | 255.5 |
+| CommandLine | SUCCESS | done | - | 15/32 | - | 0 | 113.0 |
+| DateTools | SUCCESS | done | - | 15/27 | - | 3 | 310.8 |
+| DateUtil | FAILED | generated | unknown | ? | - | ? | 252.5 |
+| DisplayHelper | SUCCESS | done | - | 9/9 | - | 0 | 43.2 |
+| EmailFacadeState | FAILED | generated | unknown | ? | - | ? | 165.6 |
+| ExtBoolArray | FAILED | generated | unknown | ? | - | ? | 147.0 |
+| FilterMatcher | SUCCESS | done | - | 12/24 | - | 2 | 137.7 |
+| GridLayout2 | FAILED | generated | unknown | ? | - | ? | 124.9 |
+| HtmlEncoder | FAILED | generated | unknown | ? | - | ? | 25.6 |
+| IndexedString | FAILED | generated | unknown | ? | - | ? | 200.7 |
+| Inflection | SUCCESS | done | - | 12/20 | - | 1 | 111.5 |
+| InspirentoUtilities | SUCCESS | done | - | 15/16 | 16/16 | 1 | 124.9 |
+| MapUtil | SUCCESS | done | - | 15/16 | - | 0 | 39.6 |
+| MathUtil | FAILED | generated | unknown | ? | - | ? | 533.5 |
+| NaturalSort | SUCCESS | done | - | 33/66 | 33/66 | 0 | 111.5 |
+| Reference | SUCCESS | done | - | 8/19 | - | 0 | 110.7 |
+| Region | SUCCESS | done | - | 12/25 | 14/25 | 0 | 110.0 |
+| OutputConfig | FAILED | generated | unknown | ? | - | ? | 253.4 |
+| SAXPathException | SUCCESS | done | - | 1/10 | - | 0 | 62.2 |
+| StringComparator | FAILED | generated | unknown | ? | - | ? | 216.5 |
+| StringEncoder64 | SUCCESS | done | - | 116/177 | - | 1 | 134.5 |
+| StringLink | SUCCESS | done | - | 4/15 | - | 0 | 102.7 |
+| StringUtils | FAILED | generated | unknown | ? | - | ? | 191.9 |
+| ToStringConverter | FAILED | mvn_ok | pitest | ? | - | ? | 45.4 |
+| UniqueTimestampGenerator | FAILED | generated | unknown | ? | - | ? | 344.6 |
+| Util | SUCCESS | done | - | 8/28 | - | 0 | 42.3 |
+| Utils | SUCCESS | done | - | 11/24 | - | 4 | 228.8 |
+| Version | SUCCESS | done | - | 14/19 | - | 0 | 49.7 |
+| Wildcard | FAILED | generated | unknown | ? | - | ? | 140.6 |
+| XStringSupport | SUCCESS | done | - | 12/32 | - | 6 | 239.3 |

@@ -1,0 +1,17 @@
+version=v15
+model=deepseek-coder:6.7b
+generation_profile=baseline_behavior
+cut=D:\Project\testgen-lab\src\main\java\calculator\Calculator.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\CalculatorTest_v15.java
+activated_test=D:\Project\testgen-lab\src\test\java\calculator\CalculatorTest.java
+mvn_test=SUCCESS
+pitest=SUCCESS
+baseline_mutation_score=6/11
+augmented_mutation_score=-
+tests_generated=3
+repair_attempts=0
+augmentation_success=no
+augmentation_programmatic_fix_used=No
+
+Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
+15	deepseek-coder:6.7b	16:40	16:41	0.8	3	0	3	Success	-	Yes	6/11	-	3	no

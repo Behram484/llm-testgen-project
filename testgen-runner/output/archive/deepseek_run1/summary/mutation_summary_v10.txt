@@ -1,0 +1,1 @@
+- str: surviving mutant indicates multiplication/division operator behavior is not fully constrained; current tests may not distinguish * from / in the expression.

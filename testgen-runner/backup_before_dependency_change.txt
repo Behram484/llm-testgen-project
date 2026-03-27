@@ -1,0 +1,45 @@
+BACKUP: Key code before dependency auto-scan change
+Date: 2026-03-16
+Purpose: Rollback reference if dependency scanning breaks the system
+
+=== runner.py build_prompt (line 108-163) ===
+def build_prompt(
+    template: str,
+    code: str,
+    test_class_name: str,
+    failures: list[str] | None = None,
+    failed_methods: str | None = None,
+    successful_ref: str | None = None,
+    passed_tests_hint: str | None = None,
+    anti_stuck_hint: str | None = None,
+    mutation_summary: str | None = None,
+    current_test_class: str | None = None,
+    package_name: str | None = None,
+) -> str:
+    out = template.replace("<CODE>", code)
+    out = out.replace("{TEST_CLASS_NAME}", test_class_name)
+    ... (standard placeholder replacements)
+    return out.strip() + "\n"
+
+=== runner.py main CUT reading (line 1209-1224) ===
+    code = read_text(cut_file)
+    package_name = parse_package_from_java(code)
+    template = read_text(prompt_template_path)
+    ... (no dependency scanning)
+    prompt = build_prompt(
+        template, code, test_class_name,
+        successful_ref=successful_ref,
+        package_name=package_name,
+    )
+
+=== prompts/baseline_behavior.txt ===
+No {DEPENDENCY} placeholder. Only <CODE> for single CUT.
+
+=== prompts/semantic_repair.txt ===
+No {DEPENDENCY} placeholder.
+
+=== prompts/compile_repair.txt ===
+No {DEPENDENCY} placeholder.
+
+=== prompts/mutation_augment.txt ===
+No {DEPENDENCY} placeholder.

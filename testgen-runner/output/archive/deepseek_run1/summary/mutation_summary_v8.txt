@@ -1,0 +1,4 @@
+- getNumberString: surviving mutants indicate behavior is insufficiently tested; subtraction/addition operator behavior is not fully constrained.
+- replaceAll: surviving mutant indicates behavior is insufficiently tested.
+- replaceFirst: surviving mutant indicates behavior is insufficiently tested.
+- successorUsualChars: surviving mutant indicates behavior is insufficiently tested.

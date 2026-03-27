@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MathUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">mathutil</a> &gt; <span class="el_source">MathUtil.java</span></div><h1>MathUtil.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2013 J. Craig Venter Institute.
+ * 	This file is part of Jillion
+ * 
+ * 	 Jillion is free software: you can redistribute it and/or modify
+ * 	it under the terms of the GNU General Public License as published by
+ * 	the Free Software Foundation, either version 3 of the License, or
+ * 	(at your option) any later version.
+ * 	
+ * 	 Jillion is distributed in the hope that it will be useful,
+ * 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * 	GNU General Public License for more details.
+ * 	
+ * 	You should have received a copy of the GNU General Public License
+ * 	along with  Jillion.  If not, see http://www.gnu.org/licenses
+ * 
+ * Contributors:
+ *     Danny Katzel - initial API and implementation
+ ******************************************************************************/
+/*
+ * Created on Aug 7, 2008
+ *
+ * @author dkatzel
+ */
+package mathutil;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public final  class MathUtil {
+	private MathUtil(){
+		
+	}
+    public static &lt;N extends Number&gt; N minOf(Collection&lt;N&gt; numbers){
+<span class="nc" id="L41">        verifyNotEmpty(numbers);</span>
+<span class="nc" id="L42">        Iterator&lt;N&gt; iter = numbers.iterator();</span>
+<span class="nc" id="L43">        N currentMin = iter.next();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        while(iter.hasNext()){</span>
+<span class="nc" id="L45">            N next = iter.next();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if(next.longValue() &lt; currentMin.longValue()){</span>
+<span class="nc" id="L47">                currentMin = next;</span>
+            }
+<span class="nc" id="L49">        }</span>
+
+<span class="nc" id="L51">        return currentMin;</span>
+    }
+	private static &lt;N&gt; void verifyNotEmpty(Collection&lt;N&gt; numbers) {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		if(numbers.isEmpty()){</span>
+<span class="nc" id="L55">            throw new IllegalArgumentException(&quot;must pass in at least one value&quot;);</span>
+        }
+<span class="nc" id="L57">	}</span>
+    public static &lt;N extends Number&gt; N minOf(N...numbers){
+<span class="nc" id="L59">        return minOf(Arrays.asList(numbers));</span>
+    }
+    public static &lt;N extends Number&gt; N maxOf(Collection&lt;N&gt; numbers){
+<span class="nc" id="L62">    	verifyNotEmpty(numbers);</span>
+<span class="nc" id="L63">        Iterator&lt;N&gt; iter = numbers.iterator();</span>
+<span class="nc" id="L64">        N currentMax = iter.next();</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        while(iter.hasNext()){</span>
+<span class="nc" id="L66">            N next = iter.next();</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if(next.longValue() &gt; currentMax.longValue()){</span>
+<span class="nc" id="L68">                currentMax = next;</span>
+            }
+<span class="nc" id="L70">        }</span>
+
+<span class="nc" id="L72">        return currentMax;</span>
+    }
+    public static &lt;N extends Number&gt; N maxOf(N...integers){
+<span class="nc" id="L75">        return maxOf(Arrays.asList(integers));</span>
+    }
+
+    public static&lt;N extends Number&gt; Double averageOf(N... values){
+<span class="nc" id="L79">        return averageOf(Arrays.asList(values));</span>
+    }
+    public static  &lt;N extends Number&gt; Double averageOf(Collection&lt;N&gt; values){
+<span class="nc" id="L82">    	verifyNotEmpty(values);</span>
+<span class="nc" id="L83">        long sum=0;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        for(N value : values){</span>
+<span class="nc" id="L85">            sum += value.longValue();</span>
+<span class="nc" id="L86">        }</span>
+<span class="nc" id="L87">        return Double.valueOf((double)sum/values.size());</span>
+
+
+    }
+    public static BigInteger sumOf(byte[] values){
+<span class="nc" id="L92">        List&lt;Byte&gt; list = new ArrayList&lt;Byte&gt;(values.length);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        for(int i=0; i&lt;values.length; i++){</span>
+<span class="nc" id="L94">            list.add(Byte.valueOf(values[i]));</span>
+        }
+<span class="nc" id="L96">       return sumOf(list);</span>
+    }
+    public static BigInteger sumOf(int[] values){
+<span class="nc" id="L99">       List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;(values.length);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        for(int i=0; i&lt;values.length; i++){</span>
+<span class="nc" id="L101">            list.add(Integer.valueOf(values[i]));</span>
+        }
+<span class="nc" id="L103">       return sumOf(list);</span>
+    }
+    public static BigInteger sumOf(long[] values){
+<span class="nc" id="L106">        List&lt;Long&gt; list = new ArrayList&lt;Long&gt;(values.length);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        for(int i=0; i&lt;values.length; i++){</span>
+<span class="nc" id="L108">            list.add(Long.valueOf(values[i]));</span>
+        }
+<span class="nc" id="L110">       return sumOf(list);</span>
+    }
+    public static BigInteger sumOf(short[] values){
+<span class="nc" id="L113">        List&lt;Short&gt; list = new ArrayList&lt;Short&gt;(values.length);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        for(int i=0; i&lt;values.length; i++){</span>
+<span class="nc" id="L115">            list.add(Short.valueOf(values[i]));</span>
+        }
+<span class="nc" id="L117">       return sumOf(list);</span>
+    }
+    public static BigInteger sumOf(Collection&lt;? extends Number&gt; values){
+<span class="nc" id="L120">        BigInteger sum=BigInteger.valueOf(0);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for(Number value : values){</span>
+<span class="nc" id="L122">            sum =sum.add(BigInteger.valueOf(value.longValue()));</span>
+<span class="nc" id="L123">        }</span>
+<span class="nc" id="L124">        return sum;</span>
+    }
+    public static &lt;N extends Number &amp; Comparable&lt;N&gt;&gt; Long medianOf(N... values){
+<span class="nc" id="L127">        return medianOf(Arrays.asList(values));</span>
+    }
+    public static &lt;N extends Number &amp; Comparable&lt;N&gt;&gt; Long medianOf(Collection&lt;N&gt; values){
+        
+<span class="nc" id="L131">    	verifyNotEmpty(values);</span>
+<span class="nc" id="L132">    	int size =values.size();</span>
+<span class="nc" id="L133">        List&lt;N&gt; sorted = new ArrayList&lt;N&gt;(values);</span>
+<span class="nc" id="L134">        Collections.sort(sorted);</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        if(size %2==0){</span>
+            //handle evens
+<span class="nc" id="L137">            int middleIndex = size/2;</span>
+            //get the middle of the two middle points
+            //more complicated expression A+(B-A)/2
+            //to avoid issues of overflow or underflow
+
+<span class="nc" id="L142">            N a= sorted.get(middleIndex-1);</span>
+<span class="nc" id="L143">            N b = sorted.get(middleIndex);</span>
+<span class="nc" id="L144">            return a.longValue()+(b.longValue()-a.longValue())/2;</span>
+        }
+            //handle odds
+<span class="nc" id="L147">            return sorted.get(size/2).longValue();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

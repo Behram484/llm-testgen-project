@@ -1,0 +1,17 @@
+version=v7
+model=deepseek-coder:6.7b
+generation_profile=baseline_behavior
+cut=D:\Project\testgen-lab\src\main\java\stringencoder64\StringEncoder64.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\StringEncoder64Test_v7.java
+activated_test=D:\Project\testgen-lab\src\test\java\stringencoder64\StringEncoder64Test.java
+mvn_test=SUCCESS
+pitest=SUCCESS
+baseline_mutation_score=25/177
+augmented_mutation_score=-
+tests_generated=3
+repair_attempts=0
+augmentation_success=no
+augmentation_programmatic_fix_used=Yes
+
+Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
+7	deepseek-coder:6.7b	18:21	18:22	1.2	0	0	-	Success	-	No	25/177	-	3	no

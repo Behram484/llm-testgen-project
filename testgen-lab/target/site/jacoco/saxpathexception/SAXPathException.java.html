@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SAXPathException.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">saxpathexception</a> &gt; <span class="el_source">SAXPathException.java</span></div><h1>SAXPathException.java</h1><pre class="source lang-java linenums">/*
+ * $Header: /cvsroot/saxpath/saxpath/src/java/main/org/saxpath/SAXPathException.java,v 1.4 2002/06/26 22:43:39 iter Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/26 22:43:39 $
+ *
+ * ====================================================================
+ *
+ * Copyright (C) 2000-2002 werken digital.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions, and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions, and the disclaimer that follows 
+ *    these conditions in the documentation and/or other materials 
+ *    provided with the distribution.
+ *
+ * 3. The name &quot;SAXPath&quot; must not be used to endorse or promote products
+ *    derived from this software without prior written permission.  For
+ *    written permission, please contact license@saxpath.org.
+ * 
+ * 4. Products derived from this software may not be called &quot;SAXPath&quot;, nor
+ *    may &quot;SAXPath&quot; appear in their name, without prior written permission
+ *    from the SAXPath Project Management (pm@saxpath.org).
+ * 
+ * In addition, we request (but do not require) that you include in the 
+ * end-user documentation provided with the redistribution and/or in the 
+ * software itself an acknowledgement equivalent to the following:
+ *     &quot;This product includes software developed by the
+ *      SAXPath Project (http://www.saxpath.org/).&quot;
+ * Alternatively, the acknowledgment may be graphical using the logos 
+ * available at http://www.saxpath.org/
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE SAXPath AUTHORS OR THE PROJECT
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * ====================================================================
+ * This software consists of voluntary contributions made by many 
+ * individuals on behalf of the SAXPath Project and was originally 
+ * created by bob mcwhirter &lt;bob@werken.com&gt; and 
+ * James Strachan &lt;jstrachan@apache.org&gt;.  For more information on the 
+ * SAXPath Project, please see &lt;http://www.saxpath.org/&gt;.
+ * 
+ * $Id: SAXPathException.java,v 1.4 2002/06/26 22:43:39 iter Exp $
+ */
+package saxpathexception;
+
+/** Base of all SAXPath exceptions.
+ *
+ *  @author bob mcwhirter (bob@werken.com)
+ */
+public class SAXPathException extends Exception
+{
+
+    /** The source exception, if any */
+    private Throwable cause;
+
+    /** Construct with a given message.
+     *
+     *  @param msg The error message.
+     */
+    public SAXPathException(String msg)
+    {
+<span class="nc" id="L79">        super( msg );</span>
+<span class="nc" id="L80">    }</span>
+
+    /** Construct based on another exception
+     *
+     *  @param src The error source.
+     */
+    public SAXPathException(Throwable src)
+    {
+<span class="nc" id="L88">	super ( src.getMessage() );</span>
+<span class="nc" id="L89">	cause = src;</span>
+<span class="nc" id="L90">    }</span>
+
+    /** If this exception was originally caused by another exception,
+     *  return it; otherwise, return &lt;code&gt;null&lt;/code&gt;.
+     */
+    public Throwable getCause()
+    {
+<span class="nc" id="L97">	return cause;</span>
+    }
+
+    /** Overriden to print this exception's stack, followed by the
+     *	source exception's, if any.
+     */
+    public void printStackTrace ()
+    {
+<span class="nc" id="L105">	printStackTrace ( System.err );</span>
+<span class="nc" id="L106">    }</span>
+
+    /** Overriden to print this exception's stack, followed by the
+     *	source exception's, if any.
+     */
+    public void printStackTrace ( java.io.PrintStream s )
+    {
+<span class="nc" id="L113">	super.printStackTrace ( s );</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">	if (cause != null) {</span>
+<span class="nc" id="L115">	    s.println ( &quot;root case:&quot; );</span>
+<span class="nc" id="L116">	    cause.printStackTrace ( s );</span>
+	}
+<span class="nc" id="L118">    }</span>
+
+    /** Overriden to print this exception's stack, followed by the
+     *	source exception's, if any.
+     */
+    public void printStackTrace (java.io.PrintWriter s)
+    {
+<span class="nc" id="L125">	super.printStackTrace ( s );</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">	if (cause != null) {</span>
+<span class="nc" id="L127">	    s.println ( &quot;root case:&quot; );</span>
+<span class="nc" id="L128">	    cause.printStackTrace ( s );</span>
+	}
+<span class="nc" id="L130">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

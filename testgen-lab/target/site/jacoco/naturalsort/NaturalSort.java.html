@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NaturalSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">naturalsort</a> &gt; <span class="el_source">NaturalSort.java</span></div><h1>NaturalSort.java</h1><pre class="source lang-java linenums">package naturalsort;
+
+import java.util.Comparator;
+
+/**
+  Natural-order sorting, so numbers like &quot;17&quot; and &quot;7&quot; are put in the
+  proper order.
+
+  &lt;p&gt;This is a Java port of &quot;strnatcmp.c&quot;.  This file was based on the
+  work of Martin Pool, who generously made his program open-source,
+  but any bugs in this version are entirely my fault.  See &lt;a
+  href=&quot;http://sourcefrog.net/projects/natsort/index.html&quot;&gt;his natsort
+  page&lt;/a&gt; for more info.&lt;/p&gt;
+
+  &lt;p&gt;Usage:&lt;/p&gt;
+
+&lt;pre&gt;
+  NaturalSort.compare(&quot;Photo 7.jpeg&quot;, &quot;Photo 17.jpeg&quot;)
+  =&gt; -1
+&lt;/pre&gt;
+&lt;pre&gt;
+  NaturalSort.compareIgnoreCase(&quot;Photo 7.jpeg&quot;, &quot;photo 17.jpeg&quot;); // ignore case
+  =&gt; -1
+&lt;/pre&gt;
+&lt;pre&gt;
+  Collections.sort(myList, new NaturalSort.NaturalComparator()); // a list
+&lt;/pre&gt;
+&lt;pre&gt;
+  Collections.sort(myList, new NaturalSort.CINaturalComparator()); // a list, ignore case
+&lt;/pre&gt;
+
+  &lt;p&gt;His original version, in C, is http://sourcefrog.net/projects/natsort/natsort.c&lt;/p&gt;
+
+  &lt;p&gt;The license for that is the &lt;a
+  href=&quot;http://www.gzip.org/zlib/zlib_license.html&quot;&gt;Zlib license&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.&lt;/p&gt;
+
+  &lt;p&gt;Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:&lt;/p&gt;
+
+  &lt;ol&gt;
+  &lt;li&gt;The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  &lt;li&gt;Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  &lt;li&gt;This notice may not be removed or altered from any source distribution.
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+  &lt;p&gt;I believe these terms mean it's ok to port it to Java and include
+  it in my GNU GPL-licensed program.&lt;/p&gt;
+
+  22 January 2003
+
+  @author Ken Harris &lt;kbh7@cornell.edu&gt;
+*/
+public class NaturalSort {
+    // don't instantiate me
+    private NaturalSort() { }
+
+    /* The longest run of digits wins.  That aside, the greatest
+       value wins, but we can't know that it will until we've scanned
+       both numbers to know that they have the same magnitude, so we
+       remember it in BIAS. */
+    private static int compareRight(String a, int ai, String b, int bi) {
+<span class="nc" id="L73">	int bias = 0;</span>
+
+<span class="nc" id="L75">	for (;; ai++, bi++) {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">	    char ca = (a.length()==ai ? '\0' : a.charAt(ai));</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">	    char cb = (b.length()==bi ? '\0' : b.charAt(bi));</span>
+
+<span class="nc bnc" id="L79" title="All 4 branches missed.">	    if (!Character.isDigit(ca)  &amp;&amp;  !Character.isDigit(cb))</span>
+<span class="nc" id="L80">		return bias;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">	    else if (!Character.isDigit(ca))</span>
+<span class="nc" id="L82">		return -1;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">	    else if (!Character.isDigit(cb))</span>
+<span class="nc" id="L84">		return +1;</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">	    else if (ca &lt; cb) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (bias != 0)</span>
+<span class="nc" id="L87">		    bias = -1;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">	    } else if (ca &gt; cb) {</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		if (bias != 0)</span>
+<span class="nc" id="L90">		    bias = +1;</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">	    } else if (ai==a.length()  &amp;&amp;  bi==b.length())</span>
+<span class="nc" id="L92">		return bias;</span>
+	}
+    }
+
+    /* Compare two left-aligned numbers: the first to have a
+       different value wins. */
+    private static int compareLeft(String a, int ai, String b, int bi) {
+<span class="nc" id="L99">	for (;; ai++, bi++) {</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">	    char ca = (a.length()==ai ? '\0' : a.charAt(ai));</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">	    char cb = (b.length()==bi ? '\0' : b.charAt(bi));</span>
+
+<span class="nc bnc" id="L103" title="All 4 branches missed.">	    if (!Character.isDigit(ca)  &amp;&amp;  !Character.isDigit(cb))</span>
+<span class="nc" id="L104">		return 0;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">	    else if (!Character.isDigit(ca))</span>
+<span class="nc" id="L106">		return -1;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">	    else if (!Character.isDigit(cb))</span>
+<span class="nc" id="L108">		return +1;</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">	    else if (ca &lt; cb)</span>
+<span class="nc" id="L110">		return -1;</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">	    else if (ca &gt; cb)</span>
+<span class="nc" id="L112">		return +1;</span>
+	}
+    }
+
+    private static int strnatcmp0(String a, String b, boolean foldCase) {
+	int ai, bi;
+	char ca, cb;
+	boolean fractional;
+	int result;
+     
+<span class="nc" id="L122">	ai = bi = 0;</span>
+	while (true) {
+<span class="nc bnc" id="L124" title="All 2 branches missed.">	    ca = (ai == a.length() ? '\0' : a.charAt(ai));</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">	    cb = (bi == b.length() ? '\0' : b.charAt(bi));</span>
+
+	    /* skip over leading spaces or zeros */
+<span class="nc bnc" id="L128" title="All 2 branches missed.">	    while (Character.isWhitespace(ca)) {</span>
+<span class="nc" id="L129">		ai++;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">		ca = (ai == a.length() ? '\0' : a.charAt(ai));</span>
+	    }
+
+<span class="nc bnc" id="L133" title="All 2 branches missed.">	    while (Character.isWhitespace(cb)) {</span>
+<span class="nc" id="L134">		bi++;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">		cb = (bi == b.length() ? '\0' : b.charAt(bi));</span>
+	    }
+
+	    /* process run of digits */
+<span class="nc bnc" id="L139" title="All 4 branches missed.">	    if (Character.isDigit(ca)  &amp;&amp;  Character.isDigit(cb)) {</span>
+<span class="nc bnc" id="L140" title="All 4 branches missed.">		fractional = (ca == '0' || cb == '0');</span>
+
+<span class="nc bnc" id="L142" title="All 2 branches missed.">		if (fractional) {</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">		    if ((result = compareLeft(a, ai, b, bi)) != 0)</span>
+<span class="nc" id="L144">			return result;</span>
+		} else {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">		    if ((result = compareRight(a, ai, b, bi)) != 0)</span>
+<span class="nc" id="L147">			return result;</span>
+		}
+	    }
+
+<span class="nc bnc" id="L151" title="All 4 branches missed.">	    if (ca=='\0' &amp;&amp; cb=='\0') {</span>
+		/* The strings compare the same.  Perhaps the caller
+		   will want to call strcmp to break the tie. */
+<span class="nc" id="L154">		return 0;</span>
+	    }
+
+<span class="nc bnc" id="L157" title="All 2 branches missed.">	    if (foldCase) {</span>
+<span class="nc" id="L158">		ca = Character.toUpperCase(ca);</span>
+<span class="nc" id="L159">		cb = Character.toUpperCase(cb);</span>
+	    }
+	  
+<span class="nc bnc" id="L162" title="All 2 branches missed.">	    if (ca &lt; cb)</span>
+<span class="nc" id="L163">		return -1;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">	    else if (ca &gt; cb)</span>
+<span class="nc" id="L165">		return +1;</span>
+
+<span class="nc" id="L167">	    ++ai; ++bi;</span>
+	}
+    }
+
+    /** Compare two strings using natural ordering; case-sensitive.
+	@param a the first string
+	@param b the second string
+	@return -1, 0, or +1, depending on whether a is less than,
+	equal to, or greater than b */
+    public static int compare(String a, String b) {
+<span class="nc" id="L177">	return strnatcmp0(a, b, false);</span>
+    }
+
+    /** Compare two strings using natural ordering; case-insensitive.
+	@param a the first string
+	@param b the second string
+	@return -1, 0, or +1, depending on whether a is less than,
+	equal to, or greater than b */
+    public static int compareIgnoreCase(String a, String b) {
+<span class="nc" id="L186">	return strnatcmp0(a, b, true);</span>
+    }
+
+    /** A comparator class, using natural ordering. */
+<span class="nc" id="L190">    public static class NaturalComparator implements Comparator {</span>
+	public int compare(Object o1, Object o2) {
+<span class="nc" id="L192">	    return NaturalSort.compare((String) o1, (String) o2);</span>
+	}
+    }
+
+    /** A comparator class, using case-insensitive natural ordering. */
+<span class="nc" id="L197">    public static class CINaturalComparator implements Comparator {</span>
+	public int compare(Object o1, Object o2) {
+<span class="nc" id="L199">	    return NaturalSort.compareIgnoreCase((String) o1, (String) o2);</span>
+	}
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

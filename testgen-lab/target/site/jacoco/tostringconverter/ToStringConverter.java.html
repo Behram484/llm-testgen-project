@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ToStringConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testgen-lab</a> &gt; <a href="index.source.html" class="el_package">tostringconverter</a> &gt; <span class="el_source">ToStringConverter.java</span></div><h1>ToStringConverter.java</h1><pre class="source lang-java linenums">/**
+ * [ObjectExplorer4J - Tool zur grafischen Darstellung von Objekten und ihren
+ * Referenzen]
+ * 
+ * Copyright (C) [2009] [PARAGON Systemhaus GmbH]
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see &lt;http://www.gnu.org/licenses/&gt;.
+ **/
+package tostringconverter;
+
+import java.util.Vector;
+
+/**
+ * Diese Klasse stellt Algorithmen zur Verfuegung um den Wert von Objekten als
+ * String darzustellen. Wurde implmentiert, da die Methode toString bei der
+ * Klasse Vector im Falle eines Verweises auf sich selbst zu einer Exception
+ * fuehrt.
+ */
+public final class ToStringConverter {
+	private static final String	COMMA_BLANK				= &quot;, &quot;;
+	private static final String	THIS					= &quot;this&quot;;
+	private static final String	CLOSE_SQUARE_BRACKET	= &quot;]&quot;;
+	private static final String	OPEN_SQUARE_BRACKET		= &quot;[&quot;;
+
+	public static String convertVectorToString(Vector&lt;Object&gt; vector) {
+<span class="nc" id="L37">		StringBuffer buf = new StringBuffer();</span>
+<span class="nc" id="L38">		buf.append(ToStringConverter.OPEN_SQUARE_BRACKET);</span>
+<span class="nc" id="L39">		int maxIndex = vector.size() - 1;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">		for (int i = 0; i &lt;= maxIndex; i++) {</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">			if (vector.elementAt(i) != vector) {</span>
+<span class="nc" id="L42">				buf.append(String.valueOf(vector.elementAt(i)));</span>
+			}
+			else {
+<span class="nc" id="L45">				buf.append(ToStringConverter.THIS);</span>
+			}
+<span class="nc bnc" id="L47" title="All 2 branches missed.">			if (i &lt; maxIndex) {</span>
+<span class="nc" id="L48">				buf.append(ToStringConverter.COMMA_BLANK);</span>
+			}
+		}
+<span class="nc" id="L51">		buf.append(ToStringConverter.CLOSE_SQUARE_BRACKET);</span>
+<span class="nc" id="L52">		return buf.toString();</span>
+	}
+
+	/**
+	 * ToStringConverter constructor comment.
+	 */
+	private ToStringConverter() {
+		super();
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

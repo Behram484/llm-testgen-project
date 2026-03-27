@@ -1,0 +1,2 @@
+- compareRight: surviving mutants indicate boundary or branch behavior is insufficiently tested; return value is weakly constrained; current tests may not reject zero-return behavior.
+- strnatcmp0: surviving mutants indicate boundary or branch behavior is insufficiently tested; behavior is insufficiently tested.
