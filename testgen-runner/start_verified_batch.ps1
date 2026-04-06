@@ -24,7 +24,6 @@ function Note([string]$Message) {
 
 function Capture-Command([string]$Command, [string[]]$Arguments) {
     $psi = New-Object System.Diagnostics.ProcessStartInfo
-    $psi.FileName = $Command
     $psi.UseShellExecute = $false
     $psi.RedirectStandardOutput = $true
     $psi.RedirectStandardError = $true
@@ -37,7 +36,16 @@ function Capture-Command([string]$Command, [string[]]$Arguments) {
             $_
         }
     }
-    $psi.Arguments = ($quotedArgs -join " ")
+    $commandExt = [System.IO.Path]::GetExtension($Command)
+    if ($commandExt -in @(".cmd", ".bat")) {
+        $quotedCommand = '"' + ($Command -replace '"', '\"') + '"'
+        $psi.FileName = "cmd.exe"
+        $psi.Arguments = "/d /c $quotedCommand " + ($quotedArgs -join " ")
+    }
+    else {
+        $psi.FileName = $Command
+        $psi.Arguments = ($quotedArgs -join " ")
+    }
 
     $proc = New-Object System.Diagnostics.Process
     $proc.StartInfo = $psi
