@@ -49,7 +49,12 @@ function Capture-Command([string]$Command, [string[]]$Arguments) {
 
     $proc = New-Object System.Diagnostics.Process
     $proc.StartInfo = $psi
-    $null = $proc.Start()
+    try {
+        $null = $proc.Start()
+    }
+    catch {
+        throw "Failed to start command: $($psi.FileName) $($psi.Arguments)`n$($_.Exception.Message)"
+    }
     $stdout = $proc.StandardOutput.ReadToEnd()
     $stderr = $proc.StandardError.ReadToEnd()
     $proc.WaitForExit()
