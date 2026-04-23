@@ -1,3 +1,0 @@
-- by: surviving mutant indicates addition/subtraction operator behavior is not fully constrained.
-- equals: surviving mutant indicates return-value correctness is insufficiently specified.
-- hashCode: surviving mutant indicates return value is weakly constrained; current tests may not reject zero-return behavior.

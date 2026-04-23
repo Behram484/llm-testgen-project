@@ -1,3 +1,0 @@
-- StringEncoder64: surviving mutant indicates behavior is insufficiently tested.
-- decode: surviving mutants indicate behavior is insufficiently tested; subtraction/addition operator behavior is not fully constrained.
-- encode: surviving mutants indicate behavior is insufficiently tested; boundary or branch behavior is insufficiently tested.

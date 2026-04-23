@@ -1,9 +1,0 @@
-
-## Pre-experiment validation results
-Generated: 2026-03-16 07:06
-
-| CUT | Status | mvn test | pitest | mutation_score | repair_attempts | elapsed_sec |
-|-----|--------|----------|--------|----------------|-----------------|-------------|
-| Calculator | FAILED | ? | ? | ? | ? | 247.3 |
-| Reference | FAILED | ? | ? | ? | ? | 277.8 |
-| Region | FAILED | SUCCESS | SUCCESS | 14/25 | 0 | 162.3 |

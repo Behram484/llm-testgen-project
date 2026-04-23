@@ -1,2 +1,0 @@
-- equals: surviving mutant indicates boundary or branch behavior is insufficiently tested.
-- hashCode: surviving mutants indicate multiplication/division operator behavior is not fully constrained; current tests may not distinguish * from / in the expression; addition/subtraction operator behavior is not fully constrained.
