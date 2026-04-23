@@ -2247,7 +2247,6 @@ def main(config_path_override: Path | None = None) -> None:
 
     cut_class_name = cut_file.stem
     active_test_class_name = f"{cut_class_name}Test"
-    test_class_fqn = test_output_path_to_fqn(cfg.test_output_path)
     generated_dir = output_dir / "generated_tests"
     v = next_version(generated_dir, cut_class_name)
     test_class_name = f"{active_test_class_name}_v{v}"
@@ -2259,6 +2258,8 @@ def main(config_path_override: Path | None = None) -> None:
 
     code = read_text(cut_file)
     package_name = parse_package_from_java(code)
+    # Surefire/PIT need the declared Java package, not the benchmark folder path.
+    test_class_fqn = f"{package_name}.{active_test_class_name}"
     extracted_signatures = extract_public_method_signatures(code)
     method_signatures = (
         extracted_signatures

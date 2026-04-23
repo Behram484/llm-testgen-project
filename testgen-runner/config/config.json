@@ -4,7 +4,7 @@
   "test_output_path": "src/test/java/org/RegionTest.java",
   "model": "deepseek-coder:6.7b",
   "prompt_profile": "semantic_repair",
-  "generation_profile": "detailed_behavior",
+  "generation_profile": "baseline_behavior",
   "mvn_cmd": "D:/University of Sussex/3rd Year/apache-maven-3.9.12/bin/mvn.cmd",
   "enable_programmatic_fix": true,
   "regenerate_after_same_failures": 2,

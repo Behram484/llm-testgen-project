@@ -1,8 +1,7 @@
-package axis;
+package org.saxpath;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AxisTest {
  @Test
@@ -13,7 +12,7 @@ public class AxisTest {
  }
 
  @Test
- void testLookupWithInvalidAxisNum() {
+ void testLookupWithInvalidAxisName() {
  assertEquals(0, Axis.lookup("invalid axis"));
  }
 }

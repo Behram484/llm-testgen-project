@@ -1,44 +1,5 @@
-## Batch results — 2026-04-06 22:36
+## Batch results — 2026-04-23 10:14
 
 | CUT | Status | reached | stuck_at | baseline | augmented | repair | elapsed |
 |-----|--------|---------|----------|----------|-----------|--------|---------|
-| ArrayUtil | FAILED | llm_called | unknown | ? | - | ? | 39.6 |
-| Axis | SUCCESS | done | - | 15/40 | - | 0 | 32.7 |
-| Base32 | FAILED | generated | unknown | ? | - | ? | 461.7 |
-| Base64 | FAILED | llm_called | unknown | ? | - | ? | 29.0 |
-| Base64Coder | FAILED | generated | unknown | ? | - | ? | 330.0 |
-| BigDecimalUtil | FAILED | generated | unknown | ? | - | ? | 403.8 |
-| BinaryDisplayConverter | FAILED | generated | unknown | ? | - | ? | 385.7 |
-| ByteVector | FAILED | llm_called | unknown | ? | - | ? | 57.2 |
-| Calculator | SUCCESS | done | - | 4/11 | - | 3 | 65.0 |
-| CamelCaseUtil | FAILED | generated | unknown | ? | - | ? | 363.0 |
-| CommandLine | FAILED | generated | unknown | ? | - | ? | 106.9 |
-| DateTools | FAILED | generated | unknown | ? | - | ? | 210.7 |
-| DateUtil | FAILED | generated | unknown | ? | - | ? | 165.7 |
-| DisplayHelper | FAILED | generated | unknown | ? | - | ? | 494.5 |
-| EmailFacadeState | TIMEOUT | - | timeout | ? | - | ? | ? |
-| ExtBoolArray | FAILED | generated | unknown | ? | - | ? | 385.8 |
-| FilterMatcher | FAILED | generated | unknown | ? | - | ? | 370.2 |
-| GridLayout2 | FAILED | generated | unknown | ? | - | ? | 519.1 |
-| HtmlEncoder | FAILED | generated | unknown | ? | - | ? | 346.2 |
-| IndexedString | SUCCESS | done | - | 25/28 | - | 0 | 40.2 |
-| Inflection | FAILED | generated | unknown | ? | - | ? | 346.8 |
-| InspirentoUtilities | FAILED | generated | unknown | ? | - | ? | 287.5 |
-| MapUtil | SUCCESS | done | - | 15/16 | - | 1 | 55.7 |
-| MathUtil | FAILED | generated | unknown | ? | - | ? | 459.7 |
-| NaturalSort | FAILED | generated | unknown | ? | - | ? | 224.5 |
-| Reference | FAILED | generated | unknown | ? | - | ? | 320.0 |
-| Region | SUCCESS | done | - | 15/25 | - | 0 | 52.8 |
-| OutputConfig | FAILED | generated | unknown | ? | - | ? | 369.0 |
-| SAXPathException | SUCCESS | done | - | 1/10 | - | 0 | 48.3 |
-| StringComparator | FAILED | generated | unknown | ? | - | ? | 230.7 |
-| StringEncoder64 | FAILED | generated | unknown | ? | - | ? | 94.8 |
-| StringLink | FAILED | generated | unknown | ? | - | ? | 454.0 |
-| StringUtils | FAILED | generated | unknown | ? | - | ? | 52.5 |
-| ToStringConverter | FAILED | generated | unknown | ? | - | ? | 160.8 |
-| UniqueTimestampGenerator | FAILED | generated | unknown | ? | - | ? | 70.8 |
-| Util | FAILED | generated | unknown | ? | - | ? | 350.7 |
-| Utils | FAILED | llm_called | unknown | ? | - | ? | 21.6 |
-| Version | SUCCESS | done | - | 13/19 | 13/19 | 0 | 60.5 |
-| Wildcard | FAILED | generated | unknown | ? | - | ? | 355.6 |
-| XStringSupport | FAILED | generated | unknown | ? | - | ? | 244.5 |
+| Axis | SUCCESS | done | - | 15/40 | - | 0 | 36.3 |
