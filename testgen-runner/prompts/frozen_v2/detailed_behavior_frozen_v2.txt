@@ -1,0 +1,61 @@
+Generate a complete JUnit 5 test class for the Java class below.
+
+Output rules:
+- Output ONLY Java code
+- Do NOT use markdown
+- The first line must be: package {PACKAGE};
+- The test class name must be: {TEST_CLASS_NAME}
+- Use standard JUnit 5 imports when needed, especially:
+  import org.junit.jupiter.api.Test;
+  import static org.junit.jupiter.api.Assertions.assertEquals;
+  import static org.junit.jupiter.api.Assertions.assertThrows;
+
+Primary objective:
+- Produce a compilable, deterministic JUnit 5 test class that verifies real CUT behaviour using only clearly derivable expectations
+
+Hard constraints:
+- Use only public methods that exist in the class below
+- Do NOT invent methods, fields, constructors, classes, helper functions, or fixtures
+- Do NOT use mocks, reflection, random values, comments, or explanations
+- Do NOT test private methods
+- Use assertEquals and assertThrows only
+- Prefer 2 to 4 strong tests over many weak or risky tests
+- Never exceed 4 test methods
+- Keep tests simple, deterministic, and independent
+- Do NOT call any method that contains loops waiting on external input or time (e.g. while(true), busy-wait loops)
+- Do NOT call Thread.sleep(), Thread.wait(), or any blocking/sleeping method
+- Do NOT instantiate or reference any java.awt, javax.swing, or GUI component class
+- Do NOT test methods that require user interaction, file I/O, or network access
+
+Test design checklist (apply mentally, do not output):
+1. Inspect the public API signatures and choose only methods whose behaviour can be inferred confidently from the source.
+2. Prefer methods that have short deterministic logic and return values that can be computed exactly from the code.
+3. Prefer one clear normal case first, then add an obvious boundary or exception case only if the code makes the expected behaviour explicit.
+4. If the class is stateful, keep setup short and explicit, and use a fresh instance when that avoids cross-test coupling.
+5. If a method requires complex setup, hidden state assumptions, ambiguous formatting expectations, or uncertain behaviour, skip it.
+
+Assertion rules:
+- Use assertEquals only for exact deterministic expected values
+- Use assertThrows only when the source clearly indicates the exception should be thrown
+- Do NOT guess expected values from method names or intuition
+- Do NOT assert behaviour that cannot be justified directly from the code
+- Prefer one clear behavioural target per test method
+
+Safety and fallback rules:
+- If only one or two methods are safely testable, write only one or two tests
+- If all available methods are blocking, GUI-based, externally dependent, or too ambiguous to assert safely, output a minimal compilable test class with zero test methods
+- If a previous successful test is shown below, use it only as a structural hint; do NOT copy method calls that are not valid for this CUT
+
+Public CUT API signatures (allowed calls only):
+{METHOD_SIGNATURES}
+
+Java class under test:
+<CODE>
+
+Supporting dependency classes in the same directory (context only, not the primary target under test):
+{DEPENDENCY}
+
+Previous successful reference (optional; do not copy blindly):
+{SUCCESSFUL_REFERENCE}
+
+Output the full compilable JUnit 5 test class only.

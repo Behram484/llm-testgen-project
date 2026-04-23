@@ -1,39 +1,40 @@
 package outputconfig;
 
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
-class OutputConfigTest_v1 {
+public class OutputConfigTest_v1 {
  @Test
- void testCreateOutputConfig() {
- Properties props = new Properties();
- props.setProperty("method", "xml");
- props.setProperty("version", "1.0");
- props.setProperty("encoding", "UTF-8");
- props.setProperty("omit_xml_declaration", "no");
- props.setProperty("standalone", "yes");
- props.setProperty("doctype_public", "-//W3C//DTD XHTML 1.0 Strict//EN");
- props.setProperty("doctype_system", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd");
- props.setProperty("cdata_section_elements", "script java");
- props.setProperty("indent", "yes");
- props.setProperty("media_type", "text/html");
+ public void testCreateOutputConfig() {
+ Properties properties = new Properties();
+ properties.setProperty("method", "xml");
  
- OutputConfig output = OutputConfig.createOutputConfig(props);
+ OutputConfig outputConfig = OutputConfig.createOutputConfig(properties)[43D[K
+OutputConfig.createOutputConfig(properties);
+
+ Assertions.assertEquals("xml", outputConfig.method, "Method should be '[1D[K
+'xml'");
+ Assertions.assertFalse(outputConfig.isXhtml, "isXhtml should be false")[7D[K
+false");
+ Assertions.assertFalse(outputConfig.isText, "isText should be false");
+ Assertions.assertFalse(outputConfig.isHtml, "isHtml should be false");
+ }
  
- assertEquals("xml", output.method);
- assertFalse(output.isXhtml);
- assertFalse(output.isText);
- assertFalse(output.isHtml);
- assertEquals("1.0", output.version);
- assertEquals("UTF-8", output.encoding);
- assertEquals(0, output.omit_xml_declaration);
- assertTrue(output.standalone);
- assertEquals("-//W3C//DTD XHTML 1.0 Strict//EN", output.doctype_public);
- assertEquals("http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", output.doctype_system);
- assertTrue(output.cdata_section_elements.containsAll(Arrays.asList("script", "java")));
- assertTrue(output.indent);
- assertEquals("text/html", output.media_type);
+ @Test
+ public void testCreateOutputConfigWithUnknownMethod() {
+ Properties properties = new Properties();
+ properties.setProperty("method", "unknown");
+ 
+ Assertions.assertThrows(IllegalArgumentException.class, () -> OutputCon[9D[K
+OutputConfig.createOutputConfig(properties));
+ }
+ 
+ @Test
+ public void testCreateOutputConfigWithoutMethod() {
+ Properties properties = new Properties();
+ 
+ Assertions.assertThrows(IllegalArgumentException.class, () -> OutputCon[9D[K
+OutputConfig.createOutputConfig(properties));
  }
 }

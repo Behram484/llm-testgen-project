@@ -1,28 +1,34 @@
 package inflection;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-class InflectionTest_v1 {
- 
- // Passing tests (keep unchanged)
+public class InflectionTest_v1 {
  @Test
- void testIsUncountable() {
- assertTrue(Inflection.isUncountable("rice"));
- assertFalse(Inflection.isUncountable("apple"));
+ public void testMatch() {
+ Inflection inflection = new Inflection("abc", "ABC");
+ assertTrue(inflection.match("abcd"));
+ assertFalse(inflection.match("abce"));
  }
- 
+
  @Test
- void testPluralize() {
- assertEquals("people", Inflection.pluralize("person"));
- assertThrows(NullPointerException.class, () -> Inflection.pluralize(null));
+ public void testReplace() {
+ Inflection inflection = new Inflection("abc", "ABC");
+ assertEquals("ABCD", inflection.replace("abcd"));
+ assertEquals("abce", inflection.replace("abce"));
  }
- 
- // Failing test methods 
+
  @Test
- void testSingularize() {
- assertEquals("child", Inflection.singularize("children"));
- assertThrows(NullPointerException.class, () -> Inflection.singularize(null));
+ public void testPluralize() {
+ assertEquals("apples", Inflection.pluralize("apple"));
+ assertThrows(NullPointerException.class, () -> Inflection.pluralize[20D[K
+Inflection.pluralize(null));
+ }
+
+ @Test
+ public void testSingularize() {
+ assertEquals("apple", Inflection.singularize("apples"));
+ assertThrows(NullPointerException.class, () -> Inflection.singulari[20D[K
+Inflection.singularize(null));
  }
 }

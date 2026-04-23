@@ -18,7 +18,7 @@
 // Copyright 2001 Ken Harris <kbh7@cornell.edu>
 //
 
-package stringcomparator;
+package corina.util;
 
 import java.util.Comparator;
 

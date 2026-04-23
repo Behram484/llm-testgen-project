@@ -1,0 +1,21 @@
+# Prompt lite follow-up subset for 6.7B / 5-attempt comparison
+# Mix of:
+# - standard > detailed
+# - detailed >= standard counterexamples
+# - persistent hard failures as controls
+#
+# Updated 2026-04-22: removed Calculator and CamelCaseUtil (no longer in benchmark);
+# replaced with SortedArrayList and MathUtil to maintain 12-CUT subset.
+
+Axis
+BigDecimalUtil
+EmailFacadeState
+Reference
+Region
+SortedArrayList
+CommandLine
+GridLayout2
+IndexedString
+MapUtil
+BinaryDisplayConverter
+MathUtil

@@ -1,37 +1,22 @@
 package stringcomparator;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringComparatorTest_v1 {
- private final StringComparator comparator = new StringComparator(); // Create an instance of StringComparator for the tests
-
  @Test
- public void testCompareObject() {
- Assertions.assertEquals(0, comparator.compare("abc", "abc"));
- Assertions.assertEquals(-1, comparator.compare("abcd", "abcde"));
- Assertions.assertThrows(ClassCastException.class, () -> {
- comparator.compare("abc", 123);
- });
+ void testCompareObjectMethod() {
+ StringComparator comparator = new StringComparator();
+ 
+ assertEquals(0, comparator.compare("abc", "abc"));
+ assertThrows(ClassCastException.class, () -> comparator.compare(new Obje[4D[K
+Object(), "test"));
  }
-
+ 
  @Test
- public void testCompareString() {
- Assertions.assertEquals(0, StringComparator.compare("abc", "abc"));
- Assertions.assertEquals(-1, StringComparator.compare("abcd", "abcde"));
- Assertions.assertThrows(ClassCastException.class, () -> {
- StringComparator.compare("abc", 123);
- });
- }
-
- @Test
- public void testCompareDifferentLength() {
- Assertions.assertEquals(-1, StringComparator.compare("abc", "abcd"));
- Assertions.assertEquals(+1, StringComparator.compare("abcd", "abc"));
- }
-
- @Test
- public void testCompareIgnoreCase() {
- Assertions.assertEquals(0, StringComparator.compare("ABC", "abc"));
+ void testCompareStaticMethod() {
+ assertEquals(0, StringComparator.compare("abc", "abc"));
+ assertEquals(-1, StringComparator.compare("abc", "abcd"));
+ assertEquals(+1, StringComparator.compare("abcd", "abc"));
  }
 }

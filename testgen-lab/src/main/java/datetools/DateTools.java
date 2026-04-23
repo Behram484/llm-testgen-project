@@ -1,4 +1,4 @@
-package datetools;
+package org.heal.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

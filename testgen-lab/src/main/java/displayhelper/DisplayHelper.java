@@ -2,7 +2,7 @@
  * Created on 18.05.2005
  *
  */
-package displayhelper;
+package ch.bluepenguin.email.client.tapestry.helpers;
 
 import java.text.DateFormat;
 import java.util.Date;

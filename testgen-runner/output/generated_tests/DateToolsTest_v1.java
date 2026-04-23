@@ -4,52 +4,67 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class DateToolsTest_v1 {
  @Test
- public void testFormatWithDefaultDateFormat() throws Exception {
- SimpleDateFormat formatter = new SimpleDateFormat(DateTools.DEFAULT_DATE_FORMAT);
- Date date = formatter.parse("2022-12-31"); // assuming current year is 2022, month is December and day is 31
- 
- String expected = "2022-12-31"; 
+ void testFormatWithNullInput() {
+ assertNull(DateTools.format(null));
+ }
+
+ @Test
+ void testFormatWithDefaultFormat() {
+ Date date = new Date();
+ String expected = "2022-12-31"; // Use the current year, month and day [K
+for determinism
  assertEquals(expected, DateTools.format(date));
  }
 
  @Test
- public void testFormatWithLongDateFormat() throws Exception {
- SimpleDateFormat formatter = new SimpleDateFormat(DateTools.LONG_DATE_FORMAT);
- Date date = formatter.parse("2022-12-31 00:00:00"); // assuming current time is midnight
- 
- String expected = "2022-12-31 00:00:00"; 
- assertEquals(expected, DateTools.format(date, DateTools.LONG_DATE_FORMAT));
+ void testFormatWithSpecificFormat() {
+ Date date = new Date();
+ String format = "yyyy-MM-dd HH:mm:ss"; // Use the current year month an[2D[K
+and day for determinism
+ assertEquals("2022-12-31 00:00:00", DateTools.format(date, format)); 
  }
 
  @Test
- public void testIsValidDateWithValidDateString() {
- String dateString = "2022-12-31";
- assertTrue(DateTools.isValidDate(dateString));
+ void testParseWithNullInput() {
+ assertNull(DateTools.parse(null));
  }
- 
+
  @Test
- public void testParseWithValidDateString() {
- String dateString = "2022-12-31";
- // assuming current year is 2022, month is December and day is 31
- Date expected = new Date(122, 11, 31);
+ void testParseWithDefaultFormat() {
+ String dateString = "2022-12-31"; // Use the current year month and day[3D[K
+day for determinism
+ Date expected = new Date();
  assertEquals(expected, DateTools.parse(dateString));
  }
- 
+
  @Test
- public void testIsValidDateWithValidDateStringAndFormat() {
- String dateString = "2022-12-31 00:00:00";
- assertTrue(DateTools.isValidDate(dateString, DateTools.LONG_DATE_FORMAT));
+ void testParseWithSpecificFormat() {
+ String dateString = "2022-12-31 12:34:56"; // Use the current year mont[4D[K
+month and day for determinism
+ Date expected = new Date();
+ assertEquals(expected, DateTools.parse(dateString, "yyyy-MM-dd HH:mmt"));
  }
- 
+
  @Test
- public void testParseWithValidDateStringAndFormat() {
- String dateString = "2022-12-31";
- // assuming current year is 2022, month is December and day is 31
- Date expected = new Date(122, 11, 31);
- assertEquals(null, DateTools.parse(dateString, DateTools.LONG_DATE_FORMAT));
+ void testIsValidDateWithNullInput() {
+ assertThrows(java.text.ParseException.class, () -> DateTools.isValidDat[20D[K
+DateTools.isValidDate(null));
+ }
+
+ @Test
+ void testIsValidDateWithDefaultFormat() {
+ String dateString = "2022-12-31"; // Use the current year month and day[3D[K
+day for determinism
+ assertTrue(DateTools.isValidDate(dateString));
+ }
+
+ @Test
+ void testIsValidDateWithSpecificFormat() {
+ String dateString = "2022-12-31 12:34:56"; // Use the current year mont[4D[K
+month and day for determinism
+ assertTrue(DateTools.isValidDate(dateString, "yyyy-MM-dd HH:mm:ss"));
  }
 }

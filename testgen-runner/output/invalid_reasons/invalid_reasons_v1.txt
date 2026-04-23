@@ -1,1 +1,1 @@
-Missing expected class declaration: ByteVectorTest_v1
+Use JUnit assertions, not Java assert().

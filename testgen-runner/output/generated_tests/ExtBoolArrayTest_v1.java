@@ -1,29 +1,41 @@
 package extboolarray;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test; // corrected th[2D[K
+this line to be "org.junit.jupiter.api.Test"
 
 public class ExtBoolArrayTest_v1 {
- @Test
- void testSetTrue() {
- ExtBoolArray boolArray = new ExtBoolArray(5);
- boolArray.setTrue(1, 3); // setting values from index 1 to 3 as true
+ private ExtBoolArray array;
  
- assertFalse(boolArray.isFalse(0, 0)); // should return false for isFalse method on indices 0-0 as this value is set to true
- assertFalse(boolArray.isFalse(2, 4)); // should return false for isFalse method on indices 2-4 since none of these are initially set to false
+ @BeforeEach
+ public void setUp() {
+ array = new ExtBoolArray(5); // Initialize array of size 5 for tes[3D[K
+testing
+ }
+
+ @Test
+ public void testIsFalse() {
+ array.setTrue(0, 2);
+ assertTrue(array.isFalse(3, 4)); // Check if the range [3,4] is al[2D[K
+all false
+ assertTrue(array.isFalse(1, 1)); // Check if index 1 is false
  }
  
  @Test
- void testIsFalse() {
- boolArray.setTrue(1, 3); // setting values from index 1 to 3 as true
- 
- assertFalse(boolArray.isFalse(1, 3)); // should return false for isFalse method on indices 1-3
+ public void testSetTrue() {
+ array.setTrue(0, 2);
+ assertTrue(array.isFalse(3, 4)); // Check if the range [3,4] is al[2D[K
+all false
+ assertEquals(3, array.left()); // Verify remaining false elements
  }
  
  @Test
- void testLeft() {
- boolArray.setTrue(0, 2); // setting values from index 0 to 2 as true
+ public void testLeft() {
+ array.setTrue(0, 2);
+ assertEquals(3, array.left());
  
- assertEquals(2, boolArray.left()); // should return 3 for left method because all the remaining indices are false
+ array.setTrue(1, 1);
+ assertEquals(3, array.left());
  }
 }

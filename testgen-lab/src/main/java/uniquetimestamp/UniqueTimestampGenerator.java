@@ -12,7 +12,7 @@
  *  limitations under the License.
  *
  */
-package uniquetimestamp;
+package dk.statsbiblioteket.summa.common.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -237,3 +237,4 @@ public class UniqueTimestampGenerator {
         return dateFormat.parse(systemTime).getTime();
     }
 }
+

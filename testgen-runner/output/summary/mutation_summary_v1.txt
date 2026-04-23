@@ -1,2 +1,1 @@
-- getNumberString: surviving mutants indicate behavior is insufficiently tested; subtraction/addition operator behavior is not fully constrained.
-- successorUsualChars: surviving mutants indicate boundary or branch behavior is insufficiently tested; behavior is insufficiently tested.
+- equals: surviving mutant indicates return-value correctness is insufficiently specified.

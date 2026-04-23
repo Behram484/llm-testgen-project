@@ -23,7 +23,7 @@
  *
  * @author dkatzel
  */
-package mathutil;
+package org.jcvi.jillion.core.util;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

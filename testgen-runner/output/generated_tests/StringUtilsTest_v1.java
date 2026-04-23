@@ -1,44 +1,51 @@
 package stringutils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class StringUtilsTest_v1 {
+public class StringUtilsTest_v1 {
  
- // Testing leftPad method
- @org.junit.jupiter.api.Test
+ @Test
  void testLeftPad() {
- assertEquals(" hello", StringUtils.leftPad("hello", 8));
- assertThrows(IllegalArgumentException.class, () -> StringUtils.leftPad(null, 5));
- assertEquals("world", StringUtils.leftPad("world", 5));
+ assertEquals(" abc", StringUtils.leftPad("abc", 7));
+ assertEquals("abc", StringUtils.leftPad("abc", 3));
+ assertEquals("abc", StringUtils.leftPad("abc", 2));
  }
  
- // Testing splitByLines method
- @org.junit.jupiter.api.Test
+ @Test
  void testSplitByLines() {
- assertArrayEquals(new String[]{"a","b","c"}, StringUtils.splitByLines("a\nb\nc"));
+ assertArrayEquals(new String[]{"ab","c"},StringUtils.splitByLines("[45D[K
+String[]{"ab","c"},StringUtils.splitByLines("ab\nc"));
+ assertArrayEquals(new String[]{""},StringUtils.splitByLines("\n"));[45D[K
+String[]{""},StringUtils.splitByLines("\n"));
  }
  
- // Testing splitBy method
- @org.junit.jupiterapi.Test
- void testSplitBy() {
- assertArrayEquals(new String[]{"abc","def","ghi"}, StringUtils.splitBy("\n", 'a', "bc\ndef\nghi"));
+ @Test
+ void testSplitByChar() {
+ assertArrayEquals(new String[]{"a","b","c"},StringUtils.splitBy("ab[45D[K
+String[]{"a","b","c"},StringUtils.splitBy("abc", 'c'));
+ assertArrayEquals(new String[]{""},StringUtils.splitBy("abcd", 'e')[4D[K
+'e'));
  }
  
- // Testing extractInts method
- @org.junit.jupiter.api.Test
+ @Test
  void testExtractInts() {
- assertArrayEquals(new int[]{1, 2, 3}, StringUtils.extractInts("1 2 3"));
+ assertArrayEquals(new int[]{1,2,3},StringUtils.extractInts("1 2 3")[3D[K
+3"));
  }
  
- // Testing escapeForXML method
- @org.junit.jupiter.api.Test
+ @Test
  void testEscapeForXML() {
- assertEquals("&amp;lt;dating&amp;gt;&amp;#x0D;&amp;lt;/dating&amp;gt;", StringUtils.escapeForXML("<dating>\r</dating>"));
+ assertEquals("&lt;&gt;&amp;'\"", StringUtils.escapeForXML("<>&\"'\"[34D[K
+StringUtils.escapeForXML("<>&\"'\""));
  }
  
- // Testing substitute method
- @org.junit.jupiter.api.Test
+ @Test
  void testSubstitute() {
- assertEquals("hello there", StringUtils.substitute("hello world", "world", "there"));
+ assertEquals("abcde", StringUtils.substitute("abcdaaabbbccc","aaa",[45D[K
+StringUtils.substitute("abcdaaabbbccc","aaa","d"));
+ assertEquals("abcdaaabbbccc", StringUtils.substitute("abcdaaabbbccc[37D[K
+StringUtils.substitute("abcdaaabbbccc","zzz","d"));
  }
 }

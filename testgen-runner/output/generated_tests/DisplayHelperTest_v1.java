@@ -1,46 +1,61 @@
 package displayhelper;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
-import java.util.Locale;
-import java.text.DateFormat;
 import java.util.Date;
+import java.text.DateFormat;
+import java.util.Locale;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class DisplayHelperTest_v1 {
- private DisplayHelper helper = new DisplayHelper();
+ private DisplayHelper displayHelper;
+ 
+ @BeforeEach
+ public void setUp() {
+ displayHelper = new DisplayHelper();
+ }
  
  @Test
  public void testReturnStringList() {
- String[] list = {"Hello", "World"};
- assertEquals("Hello,World", helper.returnStringList(list));
+ String[] list = {"one", "two", "three"};
+ assertEquals("one,two,three", displayHelper.returnStringList(list))[37D[K
+displayHelper.returnStringList(list));
  
- String[] singleElementArray = {"OneElement"};
- assertEquals("OneElement", helper.returnStringList(singleElementArray));
+ list = new String[]{"only"};
+ assertEquals("only", displayHelper.returnStringList(list));
  }
  
  @Test
  public void testReturnFormattedDate() {
- Date date = new Date(); // Use current date for simplicity, can be mocked in real situation
- DateFormat formatter = DateFormat.getDateInstance(DateFormat.SHORT);
- String expectedOutput = formatter.format(date);
+ Date date = new Date();
+ Locale locale = new Locale("en", "US");
+ displayHelper.setMyLocale(locale);
  
- assertEquals(expectedOutput, helper.returnFormattedDate(date));
+ assertEquals(DateFormat.getDateInstance(DateFormat.SHORT, locale).f[9D[K
+locale).format(date), 
+ displayHelper.returnFormattedDate(date));
  }
  
  @Test
  public void testGetSetMyLocale() {
- Locale locale = new Locale("en", "US"); // English (United States)
- helper.setMyLocale(locale);
+ Locale locale = new Locale("de", "DE");
+ displayHelper.setMyLocale(locale);
+ assertEquals(locale, displayHelper.getMyLocale());
  
- assertEquals(locale, helper.getMyLocale());
+ locale = new Locale("fr", "FR");
+ displayHelper.setMyLocale(locale);
+ assertEquals(locale, displayHelper.getMyLocale());
  }
  
  @Test
  public void testGetSetSeparator() {
- String separator = "#";
- helper.setSeparator(separator);
+ String separator = ";";
+ displayHelper.setSeparator(separator);
+ assertEquals(separator, displayHelper.getSeparator());
  
- assertEquals(separator, helper.getSeparator());
+ separator = "|";
+ displayHelper.setSeparator(separator);
+ assertEquals(separator, displayHelper.getSeparator());
  }
 }

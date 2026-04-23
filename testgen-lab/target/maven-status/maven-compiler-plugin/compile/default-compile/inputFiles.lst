@@ -6,7 +6,6 @@ D:\Project\testgen-lab\src\main\java\base64coder\Base64Coder.java
 D:\Project\testgen-lab\src\main\java\bigdecimalutil\BigDecimalUtil.java
 D:\Project\testgen-lab\src\main\java\binarydisplayconverter\BinaryDisplayConverter.java
 D:\Project\testgen-lab\src\main\java\bytevector\ByteVector.java
-D:\Project\testgen-lab\src\main\java\calculator\Calculator.java
 D:\Project\testgen-lab\src\main\java\camelcaseutil\CamelCaseUtil.java
 D:\Project\testgen-lab\src\main\java\commandline\CommandLine.java
 D:\Project\testgen-lab\src\main\java\datetools\DateTools.java
@@ -27,6 +26,7 @@ D:\Project\testgen-lab\src\main\java\org\Reference.java
 D:\Project\testgen-lab\src\main\java\org\Region.java
 D:\Project\testgen-lab\src\main\java\outputconfig\OutputConfig.java
 D:\Project\testgen-lab\src\main\java\saxpathexception\SAXPathException.java
+D:\Project\testgen-lab\src\main\java\sortedmapvector\SortedMapVector.java
 D:\Project\testgen-lab\src\main\java\stringcomparator\StringComparator.java
 D:\Project\testgen-lab\src\main\java\stringencoder64\StringEncoder64.java
 D:\Project\testgen-lab\src\main\java\stringlink\StringLink.java

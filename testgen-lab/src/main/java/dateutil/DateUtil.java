@@ -18,7 +18,7 @@
  * Contributors:
  *     Danny Katzel - initial API and implementation
  ******************************************************************************/
-package dateutil;
+package org.jcvi.jillion.core.util;
 
 import java.util.Date;
 /**

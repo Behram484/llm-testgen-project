@@ -1,38 +1,19 @@
-[ERROR] Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.182 s <<< FAILURE! -- in xstringsupport.XStringSupportTest
-[ERROR] xstringsupport.XStringSupportTest.testSuccessorUsualCharsLengthFix -- Time elapsed: 0.017 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: < > but was: <  >
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at xstringsupport.XStringSupportTest.testSuccessorUsualCharsLengthFix(XStringSupportTest.java:33)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
-[ERROR] xstringsupport.XStringSupportTest.testGetNumberStringNegative -- Time elapsed: 0.004 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <-1> but was: <-001>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at xstringsupport.XStringSupportTest.testGetNumberStringNegative(XStringSupportTest.java:26)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
-[ERROR] Failures: 
-[ERROR]   XStringSupportTest.testGetNumberStringNegative:26 expected: <-1> but was: <-001>
-[ERROR]   XStringSupportTest.testSuccessorUsualCharsLengthFix:33 expected: < > but was: <  >
-[ERROR] Tests run: 4, Failures: 2, Errors: 0, Skipped: 0
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test (default-test) on project testgen-lab: There are test failures.
-[ERROR] 
-[ERROR] Please refer to D:\Project\testgen-lab\target\surefire-reports for the individual test results.
-[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] COMPILATION ERROR : 
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,69] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,73] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,75] �������
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,76] ��Ҫ';'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,69] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,74] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[42,10] ��Ҫ';'
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile (default-testCompile) on project testgen-lab: Compilation failure: Compilation failure: 
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,69] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,73] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,75] �������
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,76] ��Ҫ';'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,69] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,74] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[42,10] ��Ҫ';'
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.

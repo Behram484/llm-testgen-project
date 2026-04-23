@@ -58,7 +58,10 @@
  * 
  * $Id: Axis.java,v 1.11 2002/04/26 17:05:34 jstrachan Exp $
  */
-package axis;
+
+
+
+package org.saxpath;
 
 import java.util.Map;
 import java.util.HashMap;

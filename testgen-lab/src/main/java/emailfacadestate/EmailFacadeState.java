@@ -4,7 +4,7 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package emailfacadestate;
+package ch.bluepenguin.email.client.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;

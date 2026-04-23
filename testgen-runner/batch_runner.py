@@ -5,6 +5,7 @@ Batch runner: auto-discover all CUT .java files and run the full pipeline for ea
 Usage:
   python batch_runner.py                 # run all CUTs
   python batch_runner.py --only Region   # run only Region
+  python batch_runner.py --config path/to/config.json
   python batch_runner.py --dry-run       # show what would run without executing
 """
 import json
@@ -157,16 +158,24 @@ def format_table(results: list[dict]) -> str:
 def main():
     dry_run = "--dry-run" in sys.argv
     only_cuts: list[str] | None = None
+    config_path = BASE_CONFIG
     if "--only" in sys.argv:
         idx = sys.argv.index("--only")
         if idx + 1 < len(sys.argv):
             only_cuts = [s.strip() for s in sys.argv[idx + 1].split(",")]
+    if "--config" in sys.argv:
+        idx = sys.argv.index("--config")
+        if idx + 1 < len(sys.argv):
+            config_path = Path(sys.argv[idx + 1]).resolve()
+        else:
+            print("ERROR: --config requires a path")
+            sys.exit(1)
 
-    if not BASE_CONFIG.exists():
-        print(f"ERROR: config not found: {BASE_CONFIG}")
+    if not config_path.exists():
+        print(f"ERROR: config not found: {config_path}")
         sys.exit(1)
 
-    base_cfg = json.loads(BASE_CONFIG.read_text(encoding="utf-8"))
+    base_cfg = json.loads(config_path.read_text(encoding="utf-8"))
     project_root = Path(base_cfg["project_root"])
     cuts = discover_cuts(project_root)
 

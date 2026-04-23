@@ -19,7 +19,7 @@
 /*
  * Util.java
  */
-package util;
+package com.ib.client;
 
 import java.util.Vector;
 

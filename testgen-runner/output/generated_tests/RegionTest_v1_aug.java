@@ -1,76 +1,53 @@
 package org;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
-class RegionTest {
+public class RegionTest {
+ private Reference start = new Reference(0, 0);
+ private Reference end = new Reference(2, 2);
+ private Region region = new Region(start, end);
  
  @Test
- void testDefaultConstructor() {
- Region region = new Region();
- assertNull(region.start());
- assertNull(region.end());
- }
- 
- @Test
- void testNonDefaultConstructorWithTwoReferences() {
- Reference start = new Reference(1, 2);
- Reference end = new Reference(3, 4);
- Region region = new Region(start, end);
- 
+ void testRegion() {
  assertEquals(start, region.start());
  assertEquals(end, region.end());
+ 
+ assertTrue(region.contains(new Reference(0, 0)));
+ assertFalse(region.contains(new Reference(-1, -1)));
+ 
+ Region subRegion = new Region(new Reference(1, 1), end);
+ assertTrue(region.contains(subRegion));
  }
  
  @Test
- void testSetStartReference() {
- Reference start = new Reference(1, 2);
- Region region = new Region();
- region.setStartReference(start);
+ void testReference() {
+ assertEquals(0, start.row());
+ assertEquals(0, start.column());
  
- assertEquals(start, region.start());
- }
-
- @Test
- void testSetEndReference() {
- Reference end = new Reference(3, 4);
- Region region = new Region();
- region.setEndReference(end);
+ assertEquals("0,0", start.toString());
  
- assertEquals(end, region.end());
+ Reference ref = new Reference(1, 1);
+ assertTrue(region.contains(ref));
  }
  
+ // New test methods for surviving mutants
  @Test
  void testContainsRegion() {
- Region parent = new Region(new Reference(1, 2), new Reference(3, 4));
- Region child = new Region(new Reference(1, 2), new Reference(2, 3));
+ Region inside = new Region(new Reference(0, 0), new Reference(1, 1)[2D[K
+1));
+ assertTrue(region.contains(inside));
  
- assertTrue(parent.contains(child));
+ Region outside = new Region(new Reference(-1, -1), new Reference(-2[12D[K
+Reference(-2, -2));
+ assertFalse(region.contains(outside));
  }
  
  @Test
  void testContainsReference() {
- Region region = new Region(new Reference(1, 2), new Reference(3, 4));
- Reference reference = new Reference(2, 3);
+ assertTrue(region.contains(start));
  
- assertTrue(region.contains(reference));
+ Reference outside = new Reference(3, 3);
+ assertFalse(region.contains(outside));
  }
- 
- @Test
- void testContainsReferenceOutside() {
- Region region = new Region(new Reference(1, 2), new Reference(3, 4));
- Reference reference = new Reference(5, 6);
- 
- assertFalse(region.contains(reference));
- }
- 
- @Test
- void testContainsRegionOutside() {
- Region parent = new Region(new Reference(1, 2), new Reference(3, 4));
- Region child = new Region(new Reference(5, 6), new Reference(7, 8));
- 
- assertFalse(parent.contains(child));
- }
- 
 }

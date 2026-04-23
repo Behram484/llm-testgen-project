@@ -1,47 +1,63 @@
 package stringlink;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class StringLinkTest_v1 {
- 
+public class StringLinkTest_v1 {
  @Test
- void testConstructorAndGetters() {
+ void testStringLinkIntIntInt() {
  // Given
- int posOrig = 3, posNew = 4, len = 5;
- 
+ int posOrig = 5;
+ int posNew = 3;
+ int len = 7;
+
  // When
  StringLink stringLink = new StringLink(posOrig, posNew, len);
- 
+
  // Then
  assertEquals(len, stringLink.getLen());
- assertEquals(posNew, stringLink.getPosNew());
  assertEquals(posOrig, stringLink.getPosOrig());
+ assertEquals(posNew, stringLink.getPosNew());
  }
- 
+
+ @Test
+ void testStringLinkByteArray() {
+ // Given
+ byte[] data = new byte[]{0x07, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, (byt[4D[K
+(byte)0x00, (byte)0x03};
+
+ // When
+ StringLink stringLink = new StringLink(data);
+
+ // Then
+ assertEquals(7, stringLink.getLen());
+ assertEquals(5, stringLink.getPosOrig());
+ assertEquals(3, stringLink.getPosNew());
+ }
+
  @Test
  void testToString() {
  // Given
- int posOrig = 3, posNew = 4, len = 5;
- 
+ StringLink stringLink = new StringLink(5, 3, 7);
+
  // When
- StringLink stringLink = new StringLink(posOrig, posNew, len);
- 
+ String result = stringLink.toString();
+
  // Then
- assertEquals("{" + len + ": " + posOrig + "-->" + posNew + "}", stringLink.toString());
+ assertEquals("{7: 5-->3}", result);
  }
- 
+
  @Test
- void testConstructorWithBytes() {
+ void testToBytes() {
  // Given
- byte[] data = new byte[]{0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 4};
- 
+ StringLink stringLink = new StringLink(5, 3, 7);
+
  // When
- StringLink stringLink = new StringLink(data);
- 
+ byte[] result = stringLink.toBytes();
+
  // Then
- assertEquals(5, stringLink.getLen());
- assertEquals(3, stringLink.getPosOrig());
- assertEquals(4, stringLink.getPosNew());
+ assertArrayEquals(new byte[]{0x07, 0x00, 0x00, 0x00, 0x05, 0x00, (byte)[6D[K
+(byte)0x00, (byte)0x00, (byte)0x03}, result);
  }
 }

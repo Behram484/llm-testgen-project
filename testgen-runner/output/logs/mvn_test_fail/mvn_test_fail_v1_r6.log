@@ -1,8 +1,11 @@
 [ERROR] COMPILATION ERROR : 
-[ERROR] /D:/Project/testgen-lab/src/test/java/uniquetimestamp/UniqueTimestampGeneratorTest.java:[38,76] δ������쳣����java.text.ParseException; ���������в���������Ա��׳�
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile (default-testCompile) on project testgen-lab: Compilation failure
-[ERROR] /D:/Project/testgen-lab/src/test/java/uniquetimestamp/UniqueTimestampGeneratorTest.java:[38,76] δ������쳣����java.text.ParseException; ���������в���������Ա��׳�
-[ERROR] 
+[ERROR] /D:/Project/testgen-lab/src/test/java/xstringsupport/XStringSupportTest.java:[11,81] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/xstringsupport/XStringSupportTest.java:[12,15] ��Ҫ';'
+[ERROR] /D:/Project/testgen-lab/src/test/java/xstringsupport/XStringSupportTest.java:[12,46] ��Ҫ';'
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile (default-testCompile) on project testgen-lab: Compilation failure: Compilation failure: 
+[ERROR] /D:/Project/testgen-lab/src/test/java/xstringsupport/XStringSupportTest.java:[11,81] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/xstringsupport/XStringSupportTest.java:[12,15] ��Ҫ';'
+[ERROR] /D:/Project/testgen-lab/src/test/java/xstringsupport/XStringSupportTest.java:[12,46] ��Ҫ';'
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.

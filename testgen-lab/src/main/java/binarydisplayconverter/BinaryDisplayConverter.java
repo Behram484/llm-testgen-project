@@ -1,4 +1,4 @@
-package binarydisplayconverter;
+package net.sourceforge.squirrel_sql.fw.datasetviewer.cellcomponent;
 /*
  * Copyright (C) 2001-2003 Colin Bell
  * colbell@users.sourceforge.net

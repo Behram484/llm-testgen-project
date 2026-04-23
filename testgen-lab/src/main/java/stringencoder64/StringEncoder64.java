@@ -1,4 +1,4 @@
-package stringencoder64;
+package osa.ora.server.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

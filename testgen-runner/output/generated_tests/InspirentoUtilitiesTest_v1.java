@@ -3,32 +3,25 @@ package inspirentoutilities;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InspirentoUtilitiesTest {
+public class InspirentoUtilitiesTest_v1 {
+ @Test
+ void testTokenizeWithDefaultDelimiter() {
+ String[] expected = {"Hello", "World"};
+ assertArrayEquals(expected, InspirentoUtilities.tokenize("Hello World")[7D[K
+World"));
+ }
 
  @Test
- public void testEscapeText() {
- String input = "Hello & World!";
- assertEquals("Hello &amp; World!", InspirentoUtilities.escapeText(input));
- 
- input = "<script>alert('XSS');</script>";
- assertEquals("&lt;script&gt;alert(&apos;XSS&apos;);&lt;/script&gt;", InspirentoUtilities.escapeText(input));
+ void testTokenizeWithCustomDelimiter() {
+ String[] expected = {"Hello", "World"};
+ assertArrayEquals(expected, InspirentoUtilities.tokenize("Hello|World",[43D[K
+InspirentoUtilities.tokenize("Hello|World", "|"));
  }
- 
+
  @Test
- public void testTokenize() {
- String input = "file edit view";
- assertArrayEquals(new String[]{"file", "edit", "view"}, InspirentoUtilities.tokenize(input));
- 
- String delim = "-";
- assertArrayEquals(new String[]{"file", "edit", "view"}, InspirentoUtilities.tokenize(input, delim));
- }
- 
- @Test
- public void testStringReplaceAll() {
- StringBuffer source = new StringBuffer("Hello & World!");
- assertEquals(source, InspirentoUtilities.stringReplaceAll(source,'&',"&amp;"));
- 
- source = new StringBuffer("<script>alert('XSS');</script>");
- assertEquals(source, InspirentoUtilities.stringReplaceAll(source,'&',"&amp;"));
+ void testEscapeTextWithSpecialCharacters() {
+ String input = "Hello & < > \" '";
+ String expected = "Hello &amp; &lt; &gt; &quot; &apos;";
+ assertEquals(expected, InspirentoUtilities.escapeText(input));
  }
 }

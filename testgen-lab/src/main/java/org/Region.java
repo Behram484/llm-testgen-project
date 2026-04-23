@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org;
+package org.templateit;
 
 class Region
 {

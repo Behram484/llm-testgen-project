@@ -1,4 +1,4 @@
-package gridlayout2;
+package src.feudalismGUI;
 
 import java.awt.Component;
 import java.awt.Container;

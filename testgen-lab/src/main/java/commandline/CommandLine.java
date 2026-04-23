@@ -50,7 +50,7 @@
  *                      the openjms library
  */
 
-package commandline;
+package org.exolab.jms.util;
 
 import java.util.Hashtable;
 import java.util.Vector;

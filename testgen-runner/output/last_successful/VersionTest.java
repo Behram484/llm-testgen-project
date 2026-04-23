@@ -1,42 +1,53 @@
 package version;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-class VersionTest {
+public class VersionTest {
  @Test
- void testEquals() {
- Version v1 = new Version("1.2.3");
- Version v2 = new Version("1.2.3");
- assertTrue(v1.equals(v2));
- assertTrue(v2.equals(v1));
+ public void testCompareTo() {
+ Version version1 = new Version("1.2.3");
+ Version version2 = new Version("1.2.4");
+ 
+ assertEquals(-1, version1.compareTo(version2));
+ }
+
+ @Test
+ public void testEquals_sameVersions() {
+ Version version1 = new Version("1.2.3");
+ Version version2 = new Version("1.2.3");
+ 
+ assertTrue(version1.equals(version2));
  }
  
  @Test
- void testNotEquals() {
- Version v1 = new Version("1.2.4");
- Version v2 = new Version("1.2.3");
- assertFalse(v1.equals(v2));
- assertFalse(v2.equals(v1));
+ public void testEquals_differentVersions() {
+ Version version1 = new Version("1.2.3");
+ Version version2 = new Version("1.2.4");
+ 
+ assertFalse(version1.equals(version2));
  }
  
  @Test
- void testCompareTo() {
- Version v1 = new Version("1.2.3");
- Version v2 = new Version("1.2.4");
- assertTrue(v1.compareTo(v2) < 0);
- assertTrue(v2.compareTo(v1) > 0);
+ public void testHashCode_sameVersions() {
+ Version version1 = new Version("1.2.3");
+ Version version2 = new Version("1.2.3");
+ 
+ assertEquals(version1.hashCode(), version2.hashCode());
  }
  
  @Test
- void testHashCode() {
- Version v1 = new Version("1.2.3");
- assertEquals(v1.hashCode(), 6); // hashcode for '1' + '2' + '3' = 6
+ public void testHashCode_differentVersions() {
+ Version version1 = new Version("1.2.3");
+ Version version2 = new Version("1.2.4");
+ 
+ assertNotEquals(version1.hashCode(), version2.hashCode());
  }
  
  @Test
- void testToString() {
- Version v1 = new Version("1.2.3");
- assertEquals(v1.toString(), "1.2.3");
+ public void testToString() {
+ Version version1 = new Version("1.2.3");
+ 
+ assertEquals("1.2.3", version1.toString());
  }
 }

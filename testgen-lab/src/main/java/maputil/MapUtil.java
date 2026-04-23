@@ -16,7 +16,7 @@
 //  along with the util library; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 //
-package maputil;
+package com.lts.util;
 
 
 import java.util.HashMap;

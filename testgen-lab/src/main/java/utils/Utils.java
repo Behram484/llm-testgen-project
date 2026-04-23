@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002, Mikael StÃ¥ldal
+ * Copyright (c) 2002, Mikael Ståldal
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@
  * http://www.gnu.org/philosophy/license-list.html
  */
 
-package utils;
+package nu.staldal.util;
 
 
 /**

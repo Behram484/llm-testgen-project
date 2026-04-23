@@ -18,7 +18,7 @@
 // Copyright 2001 Ken Harris <kbh7@cornell.edu>
 //
 
-package stringutils;
+package corina.util;
 
 import java.util.StringTokenizer;
 import java.io.UnsupportedEncodingException;

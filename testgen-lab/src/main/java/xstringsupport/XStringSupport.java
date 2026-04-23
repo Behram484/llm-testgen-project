@@ -1,10 +1,10 @@
-package xstringsupport;
+package net.sf.xbus.base.core.strings;
 
 /**
  * <code>XStringSupport</code>is a collection of helpful methods concerning
  * string handling.
  * 
- * @author Stephan DÃ¼wel
+ * @author Stephan Düwel
  */
 public class XStringSupport
 {

@@ -1,4 +1,4 @@
-package inspirentoutilities;
+package com.allenstudio.ir.util;
 
 import java.util.StringTokenizer;
 import java.util.Vector;

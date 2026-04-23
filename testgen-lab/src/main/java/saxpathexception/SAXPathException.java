@@ -58,7 +58,10 @@
  * 
  * $Id: SAXPathException.java,v 1.4 2002/06/26 22:43:39 iter Exp $
  */
-package saxpathexception;
+
+
+
+package org.saxpath;
 
 /** Base of all SAXPath exceptions.
  *

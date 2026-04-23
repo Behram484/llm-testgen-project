@@ -12,7 +12,7 @@
  * details.
  */
 
-package bigdecimalutil;
+package com.liferay.portal.kernel.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,8 +1,8 @@
 package tostringconverter;
 
+import org.junit.jupiter.api.Test;
 import java.util.Vector;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 
 public class ToStringConverterTest_v1 {
  @Test
@@ -10,10 +10,9 @@ public class ToStringConverterTest_v1 {
  Vector<Object> vector = new Vector<>();
  vector.add("test");
  vector.add(new Object());
- 
- String expectedResult = "[test, java.lang.Object@d62fe5b]"; // Hashcode of the object is different for every run
- String actualResult = ToStringConverter.convertVectorToString(vector);
 
- assertEquals(expectedResult, actualResult);
+ String expectedResult = "[test, java.lang.Object]";
+ assertEquals(expectedResult, ToStringConverter.convertVectorToString(ve[42D[K
+ToStringConverter.convertVectorToString(vector)); 
  }
 }

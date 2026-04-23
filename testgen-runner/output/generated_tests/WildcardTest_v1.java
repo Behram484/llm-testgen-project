@@ -1,26 +1,41 @@
 package wildcard;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
-class WildcardTest_v1 {
- @Test
- void testInstantiateWildcard() {
- assertEquals("", Wildcard.instantiateWildcard("prefix*suffix", ""));
- assertEquals("t_sted", Wildcard.instantiateWildcard("t*sted", "_"));
- }
-
- @Test
- void testMatchWildcard() {
- assertNull(Wildcard.matchWildcard("prefix*suffix", "test"));
- assertNull(Wildcard.matchWildcard("t*sted", "ested"));
- }
-
- // Copy these EXACTLY into your output, do not modify them
+public class WildcardTest_v1 {
+ private final Wildcard w = new Wildcard(); // create an instance of th[2D[K
+the Wildcard for method calls
+ 
  @Test
  void testIsWildcard() {
- assertTrue(Wildcard.isWildcard("*"));
- assertFalse(Wildcard.isWildcard("test"));
+ // Test when pattern contains '*'
+ assertTrue(Wildcard.isWildcard("*.txt"));
+ 
+ // Test when pattern contains ';'
+ assertTrue(Wildcard.isWildcard("file1.*;file2.*"));
+ 
+ // Test when pattern does not contain '*' or ';'
+ assertFalse(Wildcard.isWildcard("filename"));
+ }
+ 
+ @Test
+ void testMatchWildcard() {
+ // Test when filename matches the wildcard pattern
+ assertEquals("file.txt", Wildcard.matchWildcard("*.txt", "file.txt"[10D[K
+"file.txt"));
+ 
+ // Test when filename does not match the wildcard pattern
+ assertNull(Wildcard.matchWildcard("*.jpg", "file.txt"));
+ }
+ 
+ @Test
+ void testInstantiateWildcard() {
+ // Test instantiation of wildcard pattern with a part
+ assertEquals("file.txt", Wildcard.instantiateWildcard("*.txt", "fil[4D[K
+"file.txt"));
+ 
+ // Test instantiation of wildcard pattern without substitution
+ assertEquals("*.txt", Wildcard.instantiateWildcard("*.txt", ""));
  }
 }

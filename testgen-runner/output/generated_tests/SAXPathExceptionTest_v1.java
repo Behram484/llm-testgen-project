@@ -1,28 +1,30 @@
 package saxpathexception;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SAXPathExceptionTest_v1 {
+
  @Test
- void testConstructorWithString() {
+ void testSAXPathExceptionString() {
  String msg = "test message";
  SAXPathException exception = new SAXPathException(msg);
  assertEquals(msg, exception.getMessage());
  }
- 
+
  @Test
- void testConstructorWithThrowable() {
- Throwable src = new Exception("source exception");
+ void testSAXPathExceptionThrowable() {
+ Throwable src = new Exception("source");
  SAXPathException exception = new SAXPathException(src);
- assertEquals(src.getClass(), exception.getCause().getClass());
- assertEquals(src.getMessage(), exception.getCause().getMessage());
+ assertEquals(src, exception.getCause());
+ assertEquals(src.getMessage(), exception.getMessage());
  }
- 
+
  @Test
  void testGetCause() {
- Throwable src = new Exception("source exception");
+ Throwable src = new Exception("source");
  SAXPathException exception = new SAXPathException(src);
- assertSame(src, exception.getCause());
+ assertEquals(src, exception.getCause());
  }
 }

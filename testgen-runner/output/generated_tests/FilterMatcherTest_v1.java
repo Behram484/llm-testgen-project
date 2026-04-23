@@ -1,39 +1,41 @@
 package filtermatcher;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.regex.PatternSyntaxException;
 
 public class FilterMatcherTest_v1 {
- private FilterMatcher filterMatcher;
-
- @BeforeEach
- public void setUp() {
- filterMatcher = new FilterMatcher("Geer%", null);
- }
-
- // Passing tests
  @Test
- public void testGetMetaDataMatchString() {
- assertEquals("Geer%", filterMatcher.getMetaDataMatchString());
+ void testFilterMatcher() throws PatternSyntaxException{
+ FilterMatcher filterMatcher = new FilterMatcher("Geer%", null);
+ 
+ assertEquals(filterMatcher.getMetaDataMatchString(), "Geer%");
+ assertThrows(PatternSyntaxException.class, () -> filterMatcher.new Filt[4D[K
+FilterMatcher("%^&\\[18D\\]\[KFilterMatcher(\"%^&*", null));
  }
-
+ 
  @Test
- public void testGetSqlLikeMatchString() {
- assertTrue(filterMatcher.getSqlLikeMatchString().equals("%") || filterMatcher.getSqlLikeMatchString().equals("Geer%"));
+ void testMatches() {
+ FilterMatcher filterMatcher = new FilterMatcher("Geer%", "Geri");
+ 
+ assertEquals(filterMatcher.matches("Georgetown"), true);
+ assertEquals(filterMatcher.matches("Gerhard"), false);
  }
-
+ 
  @Test
- public void testMatchesWithExcludedPatternNonMatchingObjectName() {
- assertFalse(filterMatcher.matches("Alice"));
+ void testGetMetaDataMatchString() {
+ FilterMatcher filterMatcher = new FilterMatcher("Geer%", null);
+ 
+ assertEquals(filterMatcher.getMetaDataMatchString(), "Geer%");
  }
-
- // Failing test with correct assertion
+ 
  @Test
- public void testMatchesWithIncludedPatternMatchingObjectName() {
- assertEquals(false, filterMatcher.matches("Gerhard"));
+ void testGetSqlLikeMatchString() {
+ FilterMatcher filterMatcher1 = new FilterMatcher("Geer%", null);
+ 
+ assertEquals(filterMatcher1.getSqlLikeMatchString(), "Geer%");
+ 
+ FilterMatcher filterMatcher2 = new FilterMatcher(null, null);
+ assertEquals(filterMatcher2.getSqlLikeMatchString(), "%");
  }
 }

@@ -1,51 +1,55 @@
-package bytevector;
+package utils;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junitjupiter.api.Test;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ByteVectorTests {
- private ByteVector byteVector;
+public class UtilsTest_v1 {
  
- @BeforeEach
- void setup() {
- byteVector = new ByteVector();
+ @Test
+ void testEncodePath() {
+ String path = "/home/user";
+ assertEquals("--/-home-user", Utils.encodePath(path));
+ 
+ path = "C:\\Windows";
+ assertEquals("C:-Windows", Utils.encodePath(path));
  }
  
  @Test
- void testPutByteArray_whenGivenValidData_shouldReturnTheSameLength() {
- // Given
- byte[] data = new byte[]{1, 2, 3, 4};
+ void testEncodePathAsIdentifier() {
+ String path = "/home/user";
+ assertEquals("_2fhome2fuser", Utils.encodePathAsIdentifier(path));
  
- // When
- int result = byteVector.putByteArray(data, 0, data.length).getLength();
- 
- // Then
- Assertions.assertEquals(result, data.length);
+ path = "C:\\Windows";
+ assertEquals("C__3aWindows", Utils.encodePathAsIdentifier(path));
  }
  
  @Test
- void testPutUTF8_whenGivenValidString_shouldReturnTheSameLength() {
- // Given
- String str = "Hello World";
+ void testAbsoluteURL() {
+ String url = "http://www.example.com";
+ assert (Utils.absoluteURL(url));
  
- // When
- int result = byteVector.putUTF8(str).getLength();
- 
- // Then
- Assertions.assertEquals(result, str.length());
+ url = "/home/user";
+ assert (!Utils.absoluteURL(url));
  }
  
  @Test
- void testEnlarge_whenGivenValidSizeIncrease_shouldReturnNewDataOfDoubleLength() {
- // Given
- byteVector.putByteArray(new byte[]{1, 2, 3, 4}, 0, 4);
+ void testPseudoAbsoluteURL() {
+ String url = "http://www.example.com";
+ assert (Utils.pseudoAbsoluteURL(url));
  
- // When
- int result = byteVector.getData().length;
+ url = "/home/user";
+ assert (Utils.pseudoAbsoluteURL(url));
+ }
  
- // Then
- Assertions.assertEquals(result, 8);
+ @Test
+ void testNChars() {
+ int n = 5;
+ char c = 'a';
+ assertEquals("aaaaa", Utils.nChars(n, c));
+ 
+ n = 3;
+ c = 'b';
+ assertEquals("bbb", Utils.nChars(n, c));
  }
 }

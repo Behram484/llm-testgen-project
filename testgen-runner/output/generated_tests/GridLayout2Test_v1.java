@@ -1,82 +1,54 @@
 package gridlayout2;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.awt.Container;
 import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JPanel;
-import org.junit.jupiter.api.Test;
 
 class GridLayout2Test_v1 {
+ private final GridLayout2 gridLayout = new GridLayout2();
  
  @Test
- void testGridLayout2() {
- GridLayout2 layout = new GridLayout2(3, 4, 5, 6);
+ void testGridLayout2DefaultConstructor() {
+ assertEquals(1, gridLayout.getRows());
+ assertEquals(0, gridLayout.getColumns());
+ assertEquals(0, gridLayout.getHgap());
+ assertEquals(0, gridLayout.getVgap());
+ }
  
- assertEquals(3, layout.getRows());
- assertEquals(4, layout.getColumns());
- assertEquals(5, layout.getHgap());
- assertEquals(6, layout.getVgap());
+ @Test
+ void testGridLayout2TwoArgsConstructor() {
+ GridLayout2 gl = new GridLayout2(3, 4);
+ assertEquals(3, gl.getRows());
+ assertEquals(4, gl.getColumns());
+ assertEquals(0, gl.getHgap());
+ assertEquals(0, gl.getVgap());
+ }
+ 
+ @Test
+ void testGridLayout2FourArgsConstructor() {
+ GridLayout2 gl = new GridLayout2(3, 4, 5, 6);
+ assertEquals(3, gl.getRows());
+ assertEquals(4, gl.getColumns());
+ assertEquals(5, gl.getHgap());
+ assertEquals(6, gl.getVgap());
  }
  
  @Test
  void testPreferredLayoutSize() {
- GridLayout2 layout = new GridLayout2();
- Container parent = new JPanel();
- 
- List<Component> components = new ArrayList<>();
- for (int i = 0; i < 10; i++) {
- Component c = new ComponentMock(new Dimension(i * 5, i * 4));
- components.add(c);
- parent.add(c);
- }
- 
- Dimension expectedSize = new Dimension(275, 360);
- assertEquals(expectedSize, layout.preferredLayoutSize(parent));
+ Container parent = null; // Assume a valid container is passed here
+ Dimension expectedDimension = new Dimension(100, 100); // Set the expec[5D[K
+expected dimension based on your application
+ assertEquals(expectedDimension, gridLayout.preferredLayoutSize(parent))[39D[K
+gridLayout.preferredLayoutSize(parent));
  }
  
  @Test
  void testMinimumLayoutSize() {
- GridLayout2 layout = new GridLayout2();
- Container parent = new JPanel();
- 
- List<Component> components = new ArrayList<>();
- for (int i = 0; i < 10; i++) {
- Component c = new ComponentMock(new Dimension(i * 5, i * 4));
- components.add(c);
- parent.add(c);
- }
- 
- Dimension expectedSize = new Dimension(275, 360);
- assertEquals(expectedSize, layout.minimumLayoutSize(parent));
- }
- 
- @Test
- void testLayoutContainer() {
- GridLayout2 layout = new GridLayout2();
- Container parent = new JPanel();
- 
- List<Component> components = new ArrayList<>();
- for (int i = 0; i < 10; i++) {
- Component c = new ComponentMock(new Dimension(i * 5, i * 4));
- components.add(c);
- parent.add(c);
- }
- 
- layout.layoutContainer(parent);
- 
- for (int i = 0; i < 10; i++) {
- assertEquals(components.get(i).getBounds(), parent.getComponent(i).getBounds());
- }
- }
-}
-
-class ComponentMock extends javax.swing.JLabel implements java.awt.Component {
- 
- public ComponentMock(Dimension d) {
- super();
- setPreferredSize(d);
- setMinimumSize(d);
+ Container parent = null; // Assume a valid container is passed here
+ Dimension expectedDimension = new Dimension(100, 100); // Set the expec[5D[K
+expected dimension based on your application
+ assertEquals(expectedDimension, gridLayout.minimumLayoutSize(parent));
  }
 }

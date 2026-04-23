@@ -1,4 +1,4 @@
-package base64coder;
+package com.pmdesigns.jvc.tools;
 
 /**
 * A Base64 Encoder/Decoder.

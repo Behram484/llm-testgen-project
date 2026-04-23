@@ -19,7 +19,8 @@
  * 8 Allee Lenotre, La Grille Royale, 78600 Le Mesnil le Roi, France.
  *
  */
-package base32cut;
+
+package org.gudy.azureus2.core3.util;
 
 /**
  * @author parg

@@ -1,30 +1,55 @@
 package dateutil;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
-import org.junit.jupiter.api.Test;
 
 public class DateUtilTest_v1 {
- private static final long ONE_DAY = 24 * 60 * 60 * 1000;
- 
+
  @Test
- public void testSetAndRestoreDate() {
- // Save the original system time
- Date originalSystemTime = new Date();
+ public void testGetCurrentDate() {
+ // Test with system time set to a known value
+ long currentTime = System.currentTimeMillis();
  
- // Set a fixed date and verify getCurrentDate() returns this date
- DateUtil.setCurrentDate(new Date(123, 5, 7));
- assertEquals("Wed Jun 07 00:00:00 PDT 1973", DateUtil.getCurrentDate().toString());
- 
- // Restore the original system time and verify getCurrentDate() returns this date
- DateUtil.restoreDate();
- assertTrue(DateUtil.getCurrentDate().after(originalSystemTime));
+ // Set the specified date and get it back
+ Date testDate = new Date(2020, 11, 30);
+ DateUtil.setCurrentDate(testDate);
+ assertEquals(DateUtil.getCurrentDate(), testDate);
+ DateUtil.restoreDate(); // Restoring the system time after the test
  }
- 
+
  @Test
- public void testElapsedTimeAsString() {
- // Test with 1 day, 1 hour, 1 minute and 1 second
- assertEquals("P1D", DateUtil.getElapsedTimeAsString(ONE_DAY));
+ public void testSetCurrentDate() {
+ // Test with null date
+ assertThrows(NullPointerException.class, () -> DateUtil.setCurrentDate([24D[K
+DateUtil.setCurrentDate(null));
+ 
+ // Test with a valid date
+ Date testDate = new Date();
+ DateUtil.setCurrentDate(testDate);
+ assertEquals(DateUtil.getCurrentDate(), testDate);
+ DateUtil.restoreDate(); // Restoring the system time after the test
+ }
+
+ @Test
+ public void testRestoreDate() {
+ // Set the specified date and restore system time
+ Date testDate = new Date();
+ DateUtil.setCurrentDate(testDate);
+ DateUtil.restoreDate();
+ 
+ // Check that the system time is restored to default
+ assertNotEquals(DateUtil.getCurrentDate(), testDate);
+ }
+
+ @Test
+ public void testGetElapsedTimeAsString() {
+ long milliseconds = 905214L;
+ 
+ // Check that the method returns a valid string for different parts of [K
+time
+ assertEquals(DateUtil.getElapsedTimeAsString(milliseconds), "P25DT6H3M2[11D[K
+"P25DT6H3M2S");
  }
 }

@@ -1,5 +1,5 @@
 
-package base64;
+package com.hf.sfm.crypt;
 
 
 public class Base64

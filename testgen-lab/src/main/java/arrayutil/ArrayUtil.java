@@ -1,4 +1,4 @@
-package arrayutil;
+package jigl.util;
 
 public final class ArrayUtil {
 	private ArrayUtil() {}

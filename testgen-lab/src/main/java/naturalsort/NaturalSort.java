@@ -1,4 +1,4 @@
-package naturalsort;
+package corina.util;
 
 import java.util.Comparator;
 

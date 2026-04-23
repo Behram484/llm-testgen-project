@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, Mikael Stï¿½ldal
+ * Copyright (c) 2005, Mikael Ståldal
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -37,7 +37,8 @@
  * and
  * http://www.gnu.org/philosophy/license-list.html
  */
-package outputconfig;
+
+package nu.staldal.xodus;
 
 import java.util.*;
 

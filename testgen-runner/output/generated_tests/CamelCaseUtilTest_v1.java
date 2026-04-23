@@ -1,15 +1,37 @@
 package camelcaseutil;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+public class CamelCaseUtilTest_v1 {
+ @Test
+ void testFromCamelCaseWithDefaultDelimiter() {
+ assertEquals("hello-world", CamelCaseUtil.fromCamelCase("HelloWorld"));
+ }
 
-class CamelCaseUtilTest_v1 {
+ @Test
+ void testFromCamelCaseWithCustomDelimiter() {
+ assertEquals("hello_world", CamelCaseUtil.fromCamelCase("HelloWorld", '_[2D[K
+'_'));
+ }
+
  @Test
  void testNormalizeCamelCase() {
- String input = "camelCASE";
- String expectedOutput = "camel case";
- 
- assertEquals(expectedOutput, CamelCaseUtil.normalizeCamelCase(input));
+ assertEquals("helloWorld", CamelCaseUtil.normalizeCamelCase("helloW"));
+ assertEquals("hello_world", CamelCaseUtil.normalizeCamelCase("hello_worl[44D[K
+CamelCaseUtil.normalizeCamelCase("hello_world"));
+ assertEquals("HelloWorld", CamelCaseUtil.normalizeCamelCase("HelloWorld"[45D[K
+CamelCaseUtil.normalizeCamelCase("HelloWorld"));
+ }
+
+ @Test
+ void testToCamelCaseWithDefaultDelimiter() {
+ assertEquals("helloWorld", CamelCaseUtil.toCamelCase("hello-world"));
+ }
+
+ @Test
+ void testToCamelCaseWithCustomDelimiter() {
+ assertEquals("helloWorld", CamelCaseUtil.toCamelCase("hello_world", '_'[3D[K
+'_'));
  }
 }

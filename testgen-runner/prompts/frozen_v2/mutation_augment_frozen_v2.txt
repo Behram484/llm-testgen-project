@@ -1,0 +1,26 @@
+Augment the test class below to kill surviving mutants. Output ONLY the complete Java test class starting with "package ".
+
+Rules:
+- Package: package {PACKAGE};
+- Class name: {TEST_CLASS_NAME}
+- Keep ALL existing tests exactly unchanged
+- Append a few new test methods that target the surviving mutants below
+- Use only methods that exist in the CUT
+- Use assertEquals and assertThrows only
+- Derive expected values from the code logic, do not guess
+- Choose inputs where the real CUT and mutant produce different results
+- Use only these CUT public API signatures:
+{METHOD_SIGNATURES}
+
+Mutation feedback:
+{MUTATION_SUMMARY}
+
+Java class under test:
+<CODE>
+
+{DEPENDENCY}
+
+Current test class (keep unchanged, append new tests):
+{CURRENT_TEST_CLASS}
+
+Output the full test class with new tests appended before the final closing brace.

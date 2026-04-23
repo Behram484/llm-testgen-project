@@ -1,17 +1,17 @@
 version=v1
 model=deepseek-coder:6.7b
-generation_profile=baseline_behavior
-cut=D:\Project\testgen-lab\src\main\java\xstringsupport\XStringSupport.java
-generated_test=D:\Project\testgen-runner\output\generated_tests\XStringSupportTest_v1.java
-activated_test=D:\Project\testgen-lab\src\test\java\xstringsupport\XStringSupportTest.java
+generation_profile=detailed_behavior
+cut=D:\Project\testgen-lab\src\main\java\version\Version.java
+generated_test=D:\Project\testgen-runner\output\generated_tests\VersionTest_v1.java
+activated_test=D:\Project\testgen-lab\src\test\java\version\VersionTest.java
 mvn_test=SUCCESS
 pitest=SUCCESS
-baseline_mutation_score=12/32
-augmented_mutation_score=-
-tests_generated=2
-repair_attempts=6
-augmentation_success=no
-augmentation_programmatic_fix_used=Yes
+baseline_mutation_score=13/19
+augmented_mutation_score=13/19
+tests_generated=6
+repair_attempts=0
+augmentation_success=yes
+augmentation_programmatic_fix_used=No
 
 Run	Model	start	End	Total time(min)	Initial errors	Repair count	Error progression	Result	Failure_category	Programmatic_Fix_Used	baseline_mutation	augmented_mutation	tests_generated	augmentation_success
-1	deepseek-coder:6.7b	21:28	21:32	4.0	1	6	1-1-1-1-1-2-1	Success	-	Yes	12/32	-	2	no
+1	deepseek-coder:6.7b	22:25	22:26	1.0	0	0	-	Success	-	No	13/19	13/19	6	yes

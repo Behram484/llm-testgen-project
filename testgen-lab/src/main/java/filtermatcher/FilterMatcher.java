@@ -1,4 +1,4 @@
-package filtermatcher;
+package net.sourceforge.squirrel_sql.client.session.schemainfo;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
