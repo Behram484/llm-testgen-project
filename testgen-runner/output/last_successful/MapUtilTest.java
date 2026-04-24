@@ -1,37 +1,57 @@
-package maputil;
+package com.lts.util;
 
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
+import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MapUtilTest {
  @Test
- public void testBuildStringToIntMap() {
- Object[] spec = {"key1", "value1", "key2", "value2"};
- HashMap<String, String> expectedResult = new HashMap<>();
- expectedResult.put("key1", "value1");
- expectedResult.put("key2", "value2");
- 
- assertEquals(expectedResult, MapUtil.buildStringToIntMap(spec));
- }
+ void testBuildStringToIntMap() {
+ Object[] spec = {"one", 1, "two", 2, "three", 3};
+ Map<String, Integer> expectedMap = new HashMap<>();
+ expectedMap.put("one", 1);
+ expectedMap.put("two", 2);
+ expectedMap.put("three", 3);
 
- @Test
- public void testBuildMap() {
- Object[] spec = {"key1", "value1", "key2", "value2"};
- HashMap<String, String> expectedResult = new HashMap<>();
- expectedResult.put("key1", "value1");
- expectedResult.put("key2", "value2");
- 
- assertEquals(expectedResult, MapUtil.buildMap(spec));
+ Map<String, Integer> resultMap = MapUtil.buildStringToIntMap(spec);
+
+ assertEquals(expectedMap, resultMap);
  }
  
  @Test
- public void testBuildReversedMap() {
- Object[] spec = {"key1", "value1", "key2", "value2"};
- HashMap<String, String> expectedResult = new HashMap<>();
- expectedResult.put("value1", "key1");
- expectedResult.put("value2", "key2");
+ void testBuildMap() {
+ Object[] spec1D = {"one", 1, "two", 2, "three", 3};
+ Map<Object, Object> expectedMap1D = new HashMap<>();
+ expectedMap1D.put("one", 1);
+ expectedMap1D.put("two", 2);
+ expectedMap1D.put("three", 3);
+
+ Map<Object, Object> resultMap1D = MapUtil.buildMap(spec1D);
+
+ assertEquals(expectedMap1D, resultMap1D);
  
- assertEquals(expectedResult, MapUtil.buildReversedMap(spec));
+ Object[][] spec2D = {{"one", 1}, {"two", 2}, {"three", 3}};
+ Map<Object, Object> expectedMap2D = new HashMap<>();
+ expectedMap2D.put("one", 1);
+ expectedMap2D.put("two", 2);
+ expectedMap2D.put("three", 3);
+ 
+ Map<Object, Object> resultMap2D = MapUtil.buildMap(spec2D);
+
+ assertEquals(expectedMap2D, resultMap2D);
+ }
+ 
+ @Test
+ void testBuildReversedMap() {
+ Object[] spec = {"one", 1, "two", 2, "three", 3};
+ Map<Integer, String> expectedMap = new HashMap<>();
+ expectedMap.put(1, "one");
+ expectedMap.put(2, "two");
+ expectedMap.put(3, "three");
+
+ Map<Integer, String> resultMap = MapUtil.buildReversedMap(spec);
+
+ assertEquals(expectedMap, resultMap);
  }
 }

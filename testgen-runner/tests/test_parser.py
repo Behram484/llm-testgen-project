@@ -18,6 +18,7 @@ if str(_ROOT) not in sys.path:
 from runner import (  # noqa: E402
     build_failure_family_key,
     build_sticky_failure_key,
+    clean_special_tokens,
     extract_test_methods,
     normalize_failure_line_for_sticky_key,
     parse_surefire_failures,
@@ -416,6 +417,31 @@ public class XTest {
 
     def test_empty_no_tests(self) -> None:
         self.assertEqual(extract_test_methods("class NoTest {}"), {})
+
+
+class TestCleanSpecialTokens(unittest.TestCase):
+    def test_removes_ansi_cursor_sequences_from_ollama_output(self) -> None:
+        java = (
+            "package org.example;\n"
+            "public class FooTest {\n"
+            "  void t() {\n"
+            "    Foo foo = new Foo()\x1b[5D\x1b[K\n"
+            "Foo();\n"
+            "  }\n"
+            "}\n"
+        )
+        cleaned = clean_special_tokens(java)
+        self.assertNotIn("\x1b", cleaned)
+        self.assertNotIn("[5D", cleaned)
+        self.assertNotIn("[K", cleaned)
+        self.assertIn("Foo foo = new Foo();", cleaned)
+
+    def test_preserves_newlines_tabs_and_unicode(self) -> None:
+        java = "class X {\n\tString s = \"é\";\x07\n}\n"
+        cleaned = clean_special_tokens(java)
+        self.assertNotIn("\x07", cleaned)
+        self.assertIn("\n\tString", cleaned)
+        self.assertIn("\"é\"", cleaned)
 
 
 class TestValidateTestCode(unittest.TestCase):

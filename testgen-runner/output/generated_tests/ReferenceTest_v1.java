@@ -1,31 +1,46 @@
-package org;
+package org.templateit;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReferenceTest_v1 {
+public class ReferenceTest {
  @Test
- void testRowAndColumn() {
- Reference reference = new Reference(5, 3);
+ void testReferenceCreation() {
+ Reference ref = new Reference(5, 3);
  
- assertEquals(5, reference.row(), "Should return the row value");
- assertEquals(3, reference.column(), "Should return the column value");
+ assertEquals(5, ref.row());
+ assertEquals(3, ref.column());
  }
  
  @Test
- void testHashCode() {
- Reference ref1 = new Reference(5, 3);
- Reference ref2 = new Reference(5, 3);
+ void testHashCodeAndEquals() {
+ Reference ref1 = new Reference(2, 4);
+ Reference ref2 = new Reference(2, 4);
  
- assertEquals(ref1.hashCode(), ref2.hashCode(), "Should return the same h[1D[K
-hashcode for equal objects");
+ assertTrue(ref1.equals(ref2));
+ assertEquals(ref1.hashCode(), ref2.hashCode());
  }
  
  @Test
  void testToString() {
- Reference reference = new Reference(5, 3);
+ Reference ref = new Reference(7, 9);
  
- assertEquals("5,3", reference.toString(), "Should return a string repres[6D[K
-representation of the object");
+ assertEquals("7,9", ref.toString());
+ }
+
+ @Test
+ void testEqualsWithDifferentObjects() {
+ Reference ref1 = new Reference(2, 4);
+ Object ref2 = new Object();
+ 
+ assertFalse(ref1.equals(ref2));
+ }
+ 
+ @Test
+ void testHashCodeOnDifferentObjects() {
+ Reference ref1 = new Reference(2, 4);
+ Object ref2 = new Object();
+ 
+ assertNotEquals(ref1.hashCode(), ref2.hashCode());
  }
 }

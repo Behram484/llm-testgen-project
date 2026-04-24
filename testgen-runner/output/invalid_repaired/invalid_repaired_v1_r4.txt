@@ -1,5 +1,12 @@
-package datetools;
-import static org.junit.jupiter.api.Assertions.assertNull;
+package freemind.controller.filter.util;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-DateTools tools = new DateTools();
- assertNull(tools.format(null));
+@Test
+void testAddAndGetValueByIndex() {
+ Integer key = 5;
+ Object value = "test"; // Updated from String to Object
+ 
+ int index = map.add(key, value);
+ assertEquals(value, map.getValue(index));
+}

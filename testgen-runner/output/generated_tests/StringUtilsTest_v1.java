@@ -1,51 +1,42 @@
-package stringutils;
+package corina.util;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringUtilsTest_v1 {
- 
  @Test
  void testLeftPad() {
- assertEquals(" abc", StringUtils.leftPad("abc", 7));
- assertEquals("abc", StringUtils.leftPad("abc", 3));
- assertEquals("abc", StringUtils.leftPad("abc", 2));
+ assertEquals(" hello", StringUtils.leftPad("hello", 8));
+ assertEquals("hello", StringUtils.leftPad("hello", 5));
  }
  
  @Test
  void testSplitByLines() {
- assertArrayEquals(new String[]{"ab","c"},StringUtils.splitByLines("[45D[K
-String[]{"ab","c"},StringUtils.splitByLines("ab\nc"));
- assertArrayEquals(new String[]{""},StringUtils.splitByLines("\n"));[45D[K
-String[]{""},StringUtils.splitByLines("\n"));
+ assertArrayEquals(new String[] {"hello", "world"}, StringUtils.spli[16D[K
+StringUtils.splitByLines("hello\nworld"));
  }
  
  @Test
  void testSplitByChar() {
- assertArrayEquals(new String[]{"a","b","c"},StringUtils.splitBy("ab[45D[K
-String[]{"a","b","c"},StringUtils.splitBy("abc", 'c'));
- assertArrayEquals(new String[]{""},StringUtils.splitBy("abcd", 'e')[4D[K
-'e'));
+ assertArrayEquals(new String[] {"he", "llo", "wo", "rld"}, StringUt[8D[K
+StringUtils.splitBy('l', "hello world"));
  }
  
  @Test
  void testExtractInts() {
- assertArrayEquals(new int[]{1,2,3},StringUtils.extractInts("1 2 3")[3D[K
-3"));
+ assertArrayEquals(new int[] {1, 2, 3}, StringUtils.extractInts("1 2[1D[K
+2 3"));
  }
  
  @Test
  void testEscapeForXML() {
- assertEquals("&lt;&gt;&amp;'\"", StringUtils.escapeForXML("<>&\"'\"[34D[K
-StringUtils.escapeForXML("<>&\"'\""));
+ assertEquals("hello&amp;world", StringUtils.escapeForXML("hello&wor[35D[K
+StringUtils.escapeForXML("hello&world"));
  }
  
  @Test
  void testSubstitute() {
- assertEquals("abcde", StringUtils.substitute("abcdaaabbbccc","aaa",[45D[K
-StringUtils.substitute("abcdaaabbbccc","aaa","d"));
- assertEquals("abcdaaabbbccc", StringUtils.substitute("abcdaaabbbccc[37D[K
-StringUtils.substitute("abcdaaabbbccc","zzz","d"));
+ assertEquals("hey there world", StringUtils.substitute("hello there[5D[K
+there world", "hello", "hey"));
  }
 }

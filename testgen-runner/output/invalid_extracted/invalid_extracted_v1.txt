@@ -1,55 +1,37 @@
-package utils;
+package net.sourceforge.schemaspy.util;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class UtilsTest_v1 {
- 
+public class InflectionTest_v1 {
  @Test
- void testEncodePath() {
- String path = "/home/user";
- assertEquals("--/-home-user", Utils.encodePath(path));
- 
- path = "C:\\Windows";
- assertEquals("C:-Windows", Utils.encodePath(path));
+ void testPluralize() {
+ assertEquals("people", Inflection.pluralize("person"));
+ assertEquals("men", Inflection.pluralize("man"));
+ assertEquals("children", Inflection.pluralize("child"));
+ assertEquals("sexes", Inflection.pluralize("sex"));
+ assertEquals("moves", Inflection.pluralize("move"));
  }
- 
+
  @Test
- void testEncodePathAsIdentifier() {
- String path = "/home/user";
- assertEquals("_2fhome2fuser", Utils.encodePathAsIdentifier(path));
- 
- path = "C:\\Windows";
- assertEquals("C__3aWindows", Utils.encodePathAsIdentifier(path));
+ void testSingularize() {
+ assertEquals("person", Inflection.singularize("people"));
+ assertEquals("man", Inflection.singularize("men"));
+ assertEquals("child", Inflection.singularize("children"));
+ assertEquals("sex", Inflection.singularize("sexes"));
+ assertEquals("move", Inflection.singularize("moves"));
  }
- 
+
  @Test
- void testAbsoluteURL() {
- String url = "http://www.example.com";
- assert (Utils.absoluteURL(url));
- 
- url = "/home/user";
- assert (!Utils.absoluteURL(url));
- }
- 
- @Test
- void testPseudoAbsoluteURL() {
- String url = "http://www.example.com";
- assert (Utils.pseudoAbsoluteURL(url));
- 
- url = "/home/user";
- assert (Utils.pseudoAbsoluteURL(url));
- }
- 
- @Test
- void testNChars() {
- int n = 5;
- char c = 'a';
- assertEquals("aaaaa", Utils.nChars(n, c));
- 
- n = 3;
- c = 'b';
- assertEquals("bbb", Utils.nChars(n, c));
+ void testUncountable() {
+ assert(Inflection.isUncountable("equipment"));
+ assert(Inflection.isUncountable("information"));
+ assert(Inflection.isUncountable("rice"));
+ assert(Inflection.isUncountable("money"));
+ assert(Inflection.isUncountable("species"));
+ assert(Inflection.isUncountable("series"));
+ assert(Inflection.isUncountable("fish"));
+ assert(Inflection.isUncountable("sheep"));
  }
 }

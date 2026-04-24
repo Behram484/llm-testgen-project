@@ -1,37 +1,31 @@
-package bigdecimalutil;
+package com.liferay.portal.kernel.util;
 
+import java.math.RoundingMode;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.math.RoundingMode;
-
-public class BigDecimalUtilTest_v1 {
+class BigDecimalUtilTest_v1 {
+ 
+ private static final double DELTA = 0.00001;
 
  @Test
  void testAdd() {
- double result = BigDecimalUtil.add(0.5, 2);
- assertEquals(2.5, result, () -> "Addition of two numbers should work");[7D[K
-work");
+ assertEquals(4.0, BigDecimalUtil.add(1.2, 2.8), DELTA);
  }
 
  @Test
  void testMultiply() {
- double result = BigDecimalUtil.multiply(10.0, 3);
- assertEquals(30.0, result, () -> "Multiplication of two numbers should [K
-work");
+ assertEquals(10.0, BigDecimalUtil.multiply(2.5, 4), DELTA);
  }
 
  @Test
  void testScale() {
- double result = BigDecimalUtil.scale(25.478963, 2, RoundingMode.HALF_UP[20D[K
-RoundingMode.HALF_UP);
- assertEquals(25.48, result, () -> "Scaling of a number should work");
+ assertEquals(10.34687, BigDecimalUtil.scale(10.34687, 5, RoundingMode.HALF[17D[K
+RoundingMode.HALF_UP), DELTA);
  }
 
  @Test
  void testSubtract() {
- double result = BigDecimalUtil.subtract(10.5, 3.2);
- assertEquals(7.3, result, () -> "Subtraction of two numbers should work[4D[K
-work");
+ assertEquals(-3.0, BigDecimalUtil.subtract(5.99, 2.99), DELTA);
  }
 }

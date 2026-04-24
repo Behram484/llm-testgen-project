@@ -1,22 +1,22 @@
-package stringcomparator;
+package corina.util;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StringComparatorTest_v1 {
  @Test
- void testCompareObjectMethod() {
- StringComparator comparator = new StringComparator();
+ void testCompareObjects() {
+ Comparator<Object> comparator = new StringComparator();
  
- assertEquals(0, comparator.compare("abc", "abc"));
- assertThrows(ClassCastException.class, () -> comparator.compare(new Obje[4D[K
-Object(), "test"));
+ assertEquals(0, comparator.compare("test", "test"));
+ assertEquals(-1, comparator.compare("apple", "banana"));
+ assertEquals(+1, comparator.compare("banana", "apple"));
  }
- 
+
  @Test
- void testCompareStaticMethod() {
- assertEquals(0, StringComparator.compare("abc", "abc"));
- assertEquals(-1, StringComparator.compare("abc", "abcd"));
- assertEquals(+1, StringComparator.compare("abcd", "abc"));
+ void testCompareStatic() {
+ assertEquals(0, StringComparator.compare("test", "test"));
+ assertEquals(-1, StringComparator.compare("apple", "banana"));
+ assertEquals(+1, StringComparator.compare("banana", "apple"));
  }
 }

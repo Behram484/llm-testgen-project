@@ -1,1 +1,1 @@
-- equals: surviving mutant indicates return-value correctness is insufficiently specified.
+No surviving mutants. Mutation score is 100%.

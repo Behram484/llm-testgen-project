@@ -1,59 +1,58 @@
-package emailfacadestate;
+package ch.bluepenguin.email.client.service.impl;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EmailFacadeStateTest_v1 {
- @Test
- void testIsAllClean() {
- // Create an instance of the CUT with some states set
- EmailFacadeState emailFS = new EmailFacadeState();
- Integer id = 12345;
+class EmailFacadeStateTest_v1 {
+ private EmailFacadeState emailFacadeState;
  
- // Verify that all states are clean when none were initially set
- assertEquals(true, emailFS.isAllClean()); 
- 
- boolean dirtyFlag = true;
- // Set one state to dirty and verify that isAllClean returns false
- emailFS.setState(id, dirtyFlag);
- assertFalse(emailFS.isDirty(id)); 
+ @BeforeEach
+ void setUp() {
+ // Arrange: Setup the test fixture before every test method runs
+ emailFacadeState = new EmailFacadeState();
  }
  
  @Test
- void testSetAndGetState() {
- // Create an instance of the CUT
- EmailFacadeState emailFS = new EmailFacadeState();
- 
- Integer id = 12345;
+ void testSetAndGetState_withValidParameters() {
+ // Act and Assert: Test setting a state and then getting it back
+ Integer ID = 1;
  boolean dirtyFlag = true;
- 
- // Set state and verify it is set correctly
- emailFS.setState(id, dirtyFlag);
- assertEquals(dirtyFlag, emailFS.isDirty(id));
+ emailFacadeState.setState(ID, dirtyFlag);
+ assertFalse(emailFacadeState.isDirty(2)); 
+ assertTrue(emailFacadeState.isDirty(ID)); 
  }
  
  @Test
  void testClear() {
- // Create an instance of the CUT with some states set
- EmailFacadeState emailFS = new EmailFacadeState();
- Integer id = 12345;
- boolean dirtyFlag = true;
- emailFS.setState(id, dirtyFlag);
+ // Arrange: Setup a non-empty state first
+ emailFacadeState.setState(1, false);
+ emailFacadeState.setState(2, true);
  
- // Clear all states and verify they are clear
- emailFS.clear();
- assertTrue(emailFS.isDirty(id)); // the state should be clean
+ // Act: Clear the states
+ emailFacadeState.clear();
+ 
+ // Assert: All IDs should return true as they are all default dirty[5D[K
+dirty states
+ assertTrue(emailFacadeState.isDirty(1)); 
+ assertTrue(emailFacadeState.isDirty(2)); 
  }
  
  @Test
- void testSetAll() {
- // Create an instance of the CUT with some states set
- EmailFacadeState emailFS = new EmailFacadeState();
- Integer id = 12345;
+ void testSetAllAndIsAllClean() {
+ // Arrange: Setup a non-empty state first
+ emailFacadeState.setState(1, false);
+ emailFacadeState.setState(2, true);
  
- // Set all states to a specific value and verify they are set correctly
- boolean dirtyFlag = true;
- emailFS.setAll(dirtyFlag); 
- assertEquals(dirtyFlag, emailFS.isDirty(id)); 
+ // Act and Assert: Test setting all states to the same value and ch[2D[K
+checking if they are clean
+ boolean dirtyFlag = false;
+ emailFacadeState.setAll(dirtyFlag);
+ assertTrue(emailFacadeState.isDirty(1)); 
+ assertFalse(emailFacadeState.isDirty(2)); 
+ 
+ // Assert: Check if all states are clean after setting them to fals[4D[K
+false
+ assertTrue(emailFacadeState.isAllClean()); 
  }
 }

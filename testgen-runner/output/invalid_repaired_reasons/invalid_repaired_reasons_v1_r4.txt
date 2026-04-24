@@ -1,1 +1,2 @@
-Missing expected class declaration: DateToolsTest_v1
+Missing expected class declaration: SortedMapVectorTest_v1
+Does not reference class under test: SortedMapVector

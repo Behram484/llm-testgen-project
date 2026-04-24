@@ -11,26 +11,32 @@ Output rules:
   import static org.junit.jupiter.api.Assertions.assertThrows;
 
 Primary objective:
-- Produce a compilable, deterministic JUnit 5 test class that verifies real CUT behaviour using only clearly derivable expectations
+- Produce a compilable, deterministic JUnit 5 test class using only behaviour that can be derived directly from the source code
 
 Core constraints:
 - Use only public methods that exist in the class below
-- Do NOT invent methods, fields, constructors, classes, helper functions, or fixtures
+- Do NOT invent methods, fields, constructors, classes, helper functions, or @BeforeEach fixtures
 - Do NOT use mocks, reflection, random values, comments, or explanations
 - Do NOT test private methods
 - Use assertEquals and assertThrows only
+- Prefer fewer safe tests over more speculative tests
 - Prefer 2 to 4 tests; never exceed 4 test methods
 - Keep tests simple, deterministic, and independent
+- Use a fresh instance in each test when the class is stateful
 - Do NOT call blocking, GUI-based, interactive, file-I/O, or network-dependent methods
+- Do NOT call Thread.sleep(), Thread.wait(), or busy-wait loops
+- Do NOT use System.currentTimeMillis(), Instant.now(), new Date(), random values, or other time-dependent values unless the CUT itself requires them and the expected result is deterministic
 
 Test selection guidance:
 - Choose methods whose behaviour can be inferred directly from the source code and whose return values can be computed exactly
 - Prefer one clear normal case first, then add a boundary or exception case only if the code makes it explicit
-- If the class is stateful, keep setup short and use a fresh instance to avoid cross-test coupling
-- If expected output is ambiguous or requires guessing, skip that method
-- Use assertEquals only for exact deterministic values; use assertThrows only when the source clearly indicates the exception
+- If expected output is ambiguous, environment-dependent, time-dependent, locale-dependent, or requires guessing, skip that method
+- Use assertEquals only for exact deterministic values
+- Use assertThrows only when the source clearly indicates the exception
+- Do NOT maximize coverage at the expense of compilability or deterministic behaviour
 
 Fallback:
+- If only one method is safely testable, write one test
 - If no method is safely testable, output a minimal compilable test class with zero test methods
 - If a previous successful test is shown below, use it only as a structural hint; do not copy method calls that are not valid for this CUT
 

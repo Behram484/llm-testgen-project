@@ -1,19 +1,22 @@
-package base64coder;
+package com.pmdesigns.jvc.tools;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Base64CoderTest_v1 {
  @Test
- void testEncodeString() {
- assertEquals("TWFu", Base64Coder.encodeString("man"));
+ public void testEncodeString() {
+ String input = "Hello, World!";
+ assertEquals(Base64Coder.encodeString(input), "SGVsbG8sIFdvcmxkIQ==");
  }
 
  @Test
- void testDecodeString() {
+ public void testDecodeString() {
+ String encoded = "SGVsbG8sIFdvcmxkIQ==";
+ assertEquals(Base64Coder.decodeString(encoded), "Hello, World!");
+ 
+ // Test decoding an invalid string throws exception
  assertThrows(IllegalArgumentException.class, () -> Base64Coder.decodeSt[20D[K
-Base64Coder.decodeString("invalid=="));
- byte[] decoded = Base64Coder.decode("TWFu");
- assertEquals("man", new String(decoded));
+Base64Coder.decodeString("invalid_base64"));
  }
 }

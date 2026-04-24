@@ -1105,7 +1105,7 @@ def run_ollama(
         encoding="utf-8",
         errors="replace",
     )
-    cmd = ["ollama", "run", model]
+    cmd = ["ollama", "run", model, "--nowordwrap"]
     if timeout_sec is not None and timeout_sec > 0:
         proc = subprocess.run(cmd, timeout=timeout_sec, **common)
     else:
@@ -1161,7 +1161,27 @@ def clean_special_tokens(java_code: str) -> str:
       consider line-only trimming if issues arise.
     - Token patterns may need expansion for new model output formats.
     """
+    # Ollama CLI may emit terminal control sequences when wrapping output.
+    # Emulate the common "move left, clear line, continue on next line" pattern
+    # before removing any remaining control bytes.
     out = java_code
+    wrap_re = re.compile(r"([^\r\n]*)\x1b\[(\d+)D\x1b\[K\r?\n([^\r\n]*)")
+    while True:
+        m = wrap_re.search(out)
+        if not m:
+            break
+        line_prefix = m.group(1)
+        chars_to_clear = int(m.group(2))
+        continuation = m.group(3)
+        kept_prefix = line_prefix[:-chars_to_clear] if chars_to_clear <= len(line_prefix) else ""
+        out = out[:m.start()] + kept_prefix + continuation + out[m.end():]
+    out = re.sub(r"\x1b\][^\x07]*(?:\x07|\x1b\\)", "", out)
+    out = re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", out)
+    out = re.sub(r"\x1b[@-Z\\-_]", "", out)
+    out = "".join(
+        ch for ch in out
+        if ch in "\n\r\t" or ord(ch) >= 160 or 32 <= ord(ch) < 127
+    )
     # <|...|> style (e.g. <|endoftext|>, <|im_end|>)
     out = re.sub(r"<\|[^|]*\|>", "", out)
     # <｜...｜> Unicode variant

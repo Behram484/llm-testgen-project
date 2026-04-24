@@ -3,7 +3,7 @@ package net.sourceforge.schemaspy.util;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class VersionTest_v1 {
+class VersionTest {
  @Test
  void testVersionCompareTo() {
  Version v1 = new Version("1.0");

@@ -1,7 +1,10 @@
-package dateutil;
+package org.jcvi.jillion.core.util;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-The provided code has no compile errors as it is already compliant with Jav[3D[K
-Java syntax and conventions. Therefore, there's nothing to fix here. If you[3D[K
-you have some other issues or if you want me to help debug a different issu[4D[K
-issue in your existing code, please let me know! I would be glad to assist [K
-you.
+@Test
+public void testMinOfCollection() {
+ List<Integer> numbers = Arrays.asList(2, 1, 3);
+ assertEquals((long)MathUtil.minOf(numbers), 1L); // expected value is 1[1D[K
+1, but the actual min is 2
+}

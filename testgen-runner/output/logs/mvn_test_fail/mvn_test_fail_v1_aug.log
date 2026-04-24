@@ -1,19 +1,11 @@
 [ERROR] COMPILATION ERROR : 
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,69] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,73] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,75] �������
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,76] ��Ҫ';'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,69] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,74] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[42,10] ��Ҫ';'
+[ERROR] /D:/Project/testgen-lab/src/test/java/stringlink/StringLinkTest.java:[29,73] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/stringlink/StringLinkTest.java:[29,75] �������
+[ERROR] /D:/Project/testgen-lab/src/test/java/stringlink/StringLinkTest.java:[29,76] ��Ҫ';'
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile (default-testCompile) on project testgen-lab: Compilation failure: Compilation failure: 
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,69] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,73] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,75] �������
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[37,76] ��Ҫ';'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,69] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[41,74] �Ƿ��ַ�: '\u001b'
-[ERROR] /D:/Project/testgen-lab/src/test/java/org/RegionTest.java:[42,10] ��Ҫ';'
+[ERROR] /D:/Project/testgen-lab/src/test/java/stringlink/StringLinkTest.java:[29,73] �Ƿ��ַ�: '\u001b'
+[ERROR] /D:/Project/testgen-lab/src/test/java/stringlink/StringLinkTest.java:[29,75] �������
+[ERROR] /D:/Project/testgen-lab/src/test/java/stringlink/StringLinkTest.java:[29,76] ��Ҫ';'
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.

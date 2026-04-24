@@ -1,78 +1,65 @@
-package mathutil;
+package org.jcvi.jillion.core.util;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.math.BigInteger;
-import java.util.Arrays;
+import java.util.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MathUtilTest_v1 {
- private final MathUtil mathUtil = new MathUtil(); // Create instance of[2D[K
-of MathUtil to call its methods
  
  @Test
- void testMinOfCollection() {
- assertEquals(5, mathUtil.minOf(Arrays.asList(9, 7, 4, 2, 3, 6, 8, 0, [K
-5)));
+ public void testMinOfCollection() {
+ List<Integer> numbers = Arrays.asList(2, 1, 3);
+ assertEquals((long)MathUtil.minOf(numbers), 1L);
  }
-
+ 
  @Test
- void testMinOfArray() {
- assertThrows(IllegalArgumentException.class, () -> mathUtil.minOf(-1L[18D[K
-mathUtil.minOf(-1L, -2L, 3L));
+ public void testMaxOfCollection() {
+ List<Double> numbers = Arrays.asList(0.5, 1.2, -1.8);
+ assertEquals((double)MathUtil.maxOf(numbers), 1.2);
  }
-
+ 
  @Test
- void testMaxOfCollection() {
- assertEquals(9L, mathUtil.maxOf(Arrays.asLis[7D[K
->.asList(9L, 7L, 4L, 2L, 3L, 6L, 8L, 0L, 5L)));
+ public void testAverageOfCollection() {
+ List<Integer> numbers = Arrays.asList(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4,[2D[K
+4, 5);
+ assertEquals((double)MathUtil.averageOf(numbers), 0.0);
  }
-
+ 
  @Test
- void testMaxOfArray() {
- assertThrows(IllegalArgumentException.class, () -> mathUtil.maxOf(-1L[18D[K
-mathUtil.maxOf(-1L, -2L, 3L));
+ public void testSumOfCollection() {
+ List<Integer> numbers = Arrays.asList(-1, -2, -3, -4, -5);
+ assertEquals((long)MathUtil.sumOf(numbers), -15L);
  }
-
+ 
  @Test
- void testAverageOfCollection() {
- assertEquals(4.0, mathUtil.averageOf(Arrays.asList(9L, 7L, 4L, 2L, 3L[2D[K
-3L, 6L, 8L, 0L, 5L)));
+ public void testMinOfVarargs() {
+ Integer[] numbers = new Integer[]{2, 1, 3};
+ Assertions.assertEquals((long)MathUtil.minOf(Arrays.asList(numbers)), 1L[2D[K
+1L);
  }
-
+ 
  @Test
- void testAverageOfArray() {
- assertThrows(IllegalArgumentException.class, () -> mathUtil.averageOf[18D[K
-mathUtil.averageOf(-1L, -2L, 3L));
+ public void testMaxOfVarargs() {
+ Double[] numbers = new Double[]{0.5, 1.2, -1.8};
+ Assertions.assertEquals((double)MathUtil.maxOf(Arrays.asList(numbers)), [K
+1.2);
  }
-
+ 
  @Test
- void testSumOfByteArray() {
- assertEquals(BigInteger.valueOf(4), mathUtil.sumOf(new byte[]{1, 1, 1[1D[K
-1, 1, 1}));
+ public void testAverageOfVarargs() {
+ Integer[] numbers = new Integer[]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};[3D[K
+5};
+ Assertions.assertEquals((double)MathUtil.averageOf(Arrays.asList(numb[69D[K
+Assertions.assertEquals((double)MathUtil.averageOf(Arrays.asList(numbers)),Assertions.assertEquals((double)MathUtil.averageOf(Arrays.asList(numbrs)), 0.0);
  }
-
+ 
  @Test
- void testSumOfIntArray() {
- assertEquals(BigInteger.valueOf(6), mathUtil.sumOf(new int[]{1, 2, 3}[2D[K
-3}));
- }
-
- @Test
- void testSumOfLongArray() {
- assertEquals(BigInteger.valueOf(8L), mathUtil.sumOf(new long[]{1L, 1L[2D[K
-1L, 1L, 1L, 1L, 2L, 3L, 2L}));
- }
-
- @Test
- void testSumOfShortArray() {
- assertEquals(BigInteger.valueOf(6), mathUtil.sumOf(new short[]{1, 2, [K
-3}));
- }
-
- @Test
- void testSumOfCollection() {
- assertEquals(BigInteger.valueOf(15L), mathUtil.sumOf(Arrays.asList(9L[31D[K
-mathUtil.sumOf(Arrays.asList(9L, 7L, 4L, 2L)));
+ public void testSumOfVarargs() {
+ Integer[] numbers = new Integer[]{1, 2, 3, 4, 5};
+ Assertions.assertEquals((long)MathUtil.sumOf(Arrays.asList(numbers)), 15[2D[K
+15L);
  }
 }

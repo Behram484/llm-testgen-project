@@ -1,29 +1,21 @@
-package base32cut;
+package org.gudy.azureus2.core3.util;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-class Base32Test_v1 {
+public class Base32Test_v1 {
  @Test
- void testDecode() {
- String encodedString = "BVQXZ";
- byte[] expectedOutput = new byte[]{(byte)0xA4, (byte)0xE9};
-
- assertArrayEquals(expectedOutput, Base32.decode(encodedString)); 
-
- // Test empty input
- encodedString = "";
- assertArrayEquals(new byte[0], Base32.decode(encodedString)); 
- }
-
- @Test
- void testEncode() {
- byte[] input = new byte[]{(byte)0xA4, (byte)0xE9};
-
- assertEquals(UTUQ, Base32.encode(input)); 
-
- // Test empty input
- input = new byte[0];
- assertEquals("", Base32.encode(input)); 
+ void testEncodeDecode() {
+ // Normal case: simple byte array
+ byte[] bytes = new byte[]{(byte)0x48, (byte)0x65, (byte)0x6c, (byte)0x6[9D[K
+(byte)0x6c, (byte)0x6f};
+ String encoded = Base32.encode(bytes);
+ byte[] decoded = Base32.decode(encoded);
+ assertEquals("HELLO", new String(decoded));
+ 
+ // Empty case: empty byte array
+ bytes = new byte[]{};
+ encoded = Base32.encode(bytes);
+ assertTrue(encoded.isEmpty());
  }
 }

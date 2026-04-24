@@ -1,2 +1,1 @@
-Missing expected class declaration: DateUtilTest_v1
-Does not reference class under test: DateUtil
+Missing expected class declaration: MathUtilTest_v1

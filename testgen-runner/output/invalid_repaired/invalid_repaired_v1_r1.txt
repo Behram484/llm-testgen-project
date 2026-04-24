@@ -1,56 +1,72 @@
-package uniquetimestamp;
+package dk.statsbiblioteket.summa.common.util;
 
-import org.junit.jupiter.api.Test;
-import java.text.ParseException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.apicut;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class UniqueTimestampGeneratorTest {
- 
- private final UniqueTimestampGenerator uniqueTimestampGenerator = new Uniq[4D[K
-UniqueTimestampGenerator();
- 
- @Test
- void testNext() throws InterruptedException{
- long timestamp = System.currentTimeMillis();
- Thread.sleep(1); // Waiting for a while to get different next timestamps[10D[K
-timestamps
- long nextTimestamp = uniqueTimestampGenerator.next();
- 
- assertEquals(uniqueTimestampGenerator.systemTime(nextTimestamp), timesta[7D[K
-timestamp, "System time should match");
+ private UniqueTimestampGenerator cut; // Cut stands for Component Unde[4D[K
+Under Test
+
+ @BeforeEach
+ public void setUp() {
+ cut = new UniqueTimestampGenerator();
  }
- 
+
  @Test
- void testSalt() {
- long timestamp = System.currentTimeMillis();
- long nextTimestamp = uniqueTimestampGenerator.next(timestamp);
- 
- assertEquals(uniqueTimestampGenerator.salt(nextTimestamp), 0, "Salt shou[4D[K
-should be zero for the first call to next");
+ public void testNextGeneratesUniqueTimestampsInSortedOrder() {
+ long timestamp1 = cut.next();
+ long timestamp2 = cut.next();
+
+ assertTrue(timestamp1 < timestamp2);
  }
- 
+
  @Test
- void testBaseTimestamp() {
- long systemTime = 1638524799000L; // Fri Aug 26 2022 15:03:19 GMT+0000 ([1D[K
-(Coordinated Universal Time)
- 
- assertEquals(uniqueTimestampGenerator.baseTimestamp(systemTime), 1844674[7D[K
-18446744071562067968L, "Base timestamp should match");
+ public void testSystemTimeExtractsCorrectSystemTimeFromTimestamp() {
+ long systemTime = System.currentTimeMillis();
+ long timestamp = cut.next(systemTime);
+
+ assertEquals(systemTime, cut.systemTime(timestamp));
  }
- 
+
  @Test
- void testFormatSystemTime() {
- long systemTime = 1638524799000L; // Fri Aug 26 2022 15+=~΄΅Ά·ΈΉΊΌ΍ΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
- 
- assertEquals(uniqueTimestampGenerator.formatSystemTime(systemTime), "202[4D[K
-"2022-08-26T15:03:19.000", "Formatted system time should match");
+ public void testSaltExtractsCorrectSaltFromTimestamp() {
+ long systemTime = System.currentTimeMillis();
+ long timestamp1 = cut.next(systemTime);
+ long timestamp2 = cut.next(systemTime + 1); // Different system ti[2D[K
+time to ensure salt is unique
+
+ assertNotEquals(cut.salt(timestamp1), cut.salt(timestamp2));
  }
- 
+
  @Test
- void testParseSystemTime() throws ParseException {
- String systemTime = "2022-08-26T15:03:19.000";
- 
- assertEquals(uniqueTimestampGenerator.parseSystemTime(systemTime), 16385[5D[K
-1638524799000L, "Parsed system time should match");
+ public void testBaseTimestampGeneratesCorrectBaseTimestamp() {
+ long systemTime = System.currentTimeMillis();
+ long timestamp = cut.next(systemTime);
+
+ assertEquals((systemTime << UniqueTimestampGenerator.SALT_BITS), cu[2D[K
+cut.baseTimestamp(timestamp));
+ }
+
+ @Test
+ public void testFormatSystemTimeFormatsCorrectly() {
+ long systemTime = System.currentTimeMillis();
+ String expected = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")[45D[K
+SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date(systemTime));[18D[K
+Date(systemTime));
+
+ assertEquals(expected, cut.formatSystemTime(systemTime));
+ }
+
+ @Test
+ public void testParseSystemTimeParsesCorrectly() throws Exception {
+ long systemTime = System.currentTimeMillis();
+ String formattedTime = cut.formatSystemTime(systemTime);
+
+ assertEquals(systemTime, new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:s[38D[K
+SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(formattedTime).getTime(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:s.SSS").parse(formattedTime).getTime());
  }
 }

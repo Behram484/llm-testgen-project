@@ -1,4 +1,4 @@
-package commandline;
+package org.exolab.jms.util;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,59 +6,50 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommandLineTest_v1 {
  @Test
  public void testExists() {
- // create an instance of the tested class
- CommandLine cmd = new CommandLine(new String[]{"-a", "b"});
- 
- assertTrue(cmd.exists("a"));
- assertFalse(cmd.exists("c"));
+ CommandLine commandLine = new CommandLine(new String[] {"--existing[12D[K
+{"--existingOption", "paramName=paramValue"});
+ assertTrue(commandLine.exists("existingOption"));
+ assertFalse(commandLine.exists("nonExistingOption"));
  }
- 
+
  @Test
  public void testIsSwitch() {
- // create an instance of the tested class
- CommandLine cmd = new CommandLine(new String[]{"-a", "b"});
- 
- assertTrue(cmd.isSwitch("a"));
- assertFalse(cmd.isSwitch("b"));
+ CommandLine commandLine = new CommandLine(new String[] {"--switch"}[12D[K
+{"--switch"});
+ assertTrue(commandLine.isSwitch("switch"));
+ assertFalse(commandLine.isSwitch("nonExistingSwitch"));
  }
- 
+
  @Test
  public void testIsParameter() {
- // create an instance of the tested class
- CommandLine cmd = new CommandLine(new String[]{"-a", "b"});
- 
- assertFalse(cmd.isParameter("a"));
- assertTrue(cmd.isParameter("b"));
+ CommandLine commandLine = new CommandLine(new String[] {"paramName=[12D[K
+{"paramName=paramValue"});
+ assertTrue(commandLine.isParameter("paramName"));
+ assertFalse(commandLine.isParameter("nonExistingParam"));
  }
- 
+
  @Test
  public void testValue() {
- // create an instance of the tested class
- CommandLine cmd = new CommandLine(new String[]{"-a", "b"});
- 
- assertEquals(null, cmd.value("a"));
- assertEquals("b", cmd.value("b"));
- assertEquals("default", cmd.value("c", "default"));
+ CommandLine commandLine = new CommandLine(new String[] {"--existing[12D[K
+{"--existingOption", "paramName=paramValue"});
+ assertEquals("paramValue", commandLine.value("paramName"));
+ assertNull(commandLine.value("nonExistingParam"));
  }
- 
+
  @Test
  public void testAdd() {
- // create an instance of the tested class
- CommandLine cmd = new CommandLine();
+ CommandLine commandLine = new CommandLine();
  
- assertTrue(cmd.add("a", null)); // Adding option a
- assertFalse(cmd.add("a", null, false)); // Trying to add existing o[1D[4D[K
-o[1D[K
- option a without overwrite
- assertTrue(cmd.add("b", "value")); // Adding parameter b with value[5D[8D[K
-value[5D[K
- value
+ // Add an option and parameter
+ assertTrue(commandLine.add("option", null));
+ assertTrue(commandLine.add("paramName", "paramValue"));
  
- assertFalse(cmd.add("c", null, false)); // Trying to add new parame[6D[9D[K
-parame[6D[K
- parameter c without overwrite
- assertTrue(cmd.add("c", "newValue")); // Overwriting existing param[5D[8D[K
-param[5D[K
- parameter c
+ // Try to add the same again without overwrite, should fail
+ assertFalse(commandLine.add("option", null, false));
+ assertFalse(commandLine.add("paramName", "newParamValue", false));
+ 
+ // Now try with overwrite which will succeed
+ assertTrue(commandLine.add("option", null, true));
+ assertTrue(commandLine.add("paramName", "newParamValue", true));
  }
 }

@@ -2,7 +2,7 @@
   "project_root": "D:/Project/testgen-lab",
   "cut_path": "src/main/java/org/Region.java",
   "test_output_path": "src/test/java/org/RegionTest.java",
-  "model": "deepseek-coder:6.7b",
+  "model": "qwen2.5-coder:32b",
   "prompt_profile": "semantic_repair",
   "generation_profile": "baseline_behavior",
   "mvn_cmd": "D:/University of Sussex/3rd Year/apache-maven-3.9.12/bin/mvn.cmd",
@@ -13,7 +13,7 @@
   "enable_cut_api_prepass": true,
   "enable_compile_failure_family_regen": true,
   "mvn_timeout_sec": 500,
-  "ollama_timeout_sec": 180,
+  "ollama_timeout_sec": 300,
   "max_repair_attempts": 5,
   "artifact_write_mode": "minimal"
 }

@@ -1,53 +1,79 @@
-package org;
+package org.templateit;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-public class RegionTest {
- private Reference start = new Reference(0, 0);
- private Reference end = new Reference(2, 2);
- private Region region = new Region(start, end);
- 
- @Test
- void testRegion() {
- assertEquals(start, region.start());
- assertEquals(end, region.end());
- 
- assertTrue(region.contains(new Reference(0, 0)));
- assertFalse(region.contains(new Reference(-1, -1)));
- 
- Region subRegion = new Region(new Reference(1, 1), end);
- assertTrue(region.contains(subRegion));
- }
- 
- @Test
- void testReference() {
- assertEquals(0, start.row());
- assertEquals(0, start.column());
- 
- assertEquals("0,0", start.toString());
- 
- Reference ref = new Reference(1, 1);
- assertTrue(region.contains(ref));
- }
- 
- // New test methods for surviving mutants
- @Test
- void testContainsRegion() {
- Region inside = new Region(new Reference(0, 0), new Reference(1, 1)[2D[K
-1));
- assertTrue(region.contains(inside));
- 
- Region outside = new Region(new Reference(-1, -1), new Reference(-2[12D[K
-Reference(-2, -2));
- assertFalse(region.contains(outside));
- }
- 
+class RegionTest {
  @Test
  void testContainsReference() {
- assertTrue(region.contains(start));
+ Reference start = new Reference(0, 0);
+ Reference end = new Reference(5, 5);
+ Region region = new Region(start, end);
+ Reference reference = new Reference(3, 3);
  
- Reference outside = new Reference(3, 3);
- assertFalse(region.contains(outside));
+ assertTrue(region.contains(reference));
+ }
+
+ @Test
+ void testContainsRegion() {
+ Reference start1 = new Reference(0, 0);
+ Reference end1 = new Reference(5, 5);
+ Region region1 = new Region(start1, end1);
+ 
+ Reference start2 = new Reference(1, 1);
+ Reference end2 = new Reference(3, 3);
+ Region region2 = new Region(start2, end2);
+ 
+ assertTrue(region1.contains(region2));
+ }
+
+ @Test
+ void testDefaultConstructor() {
+ Region region = new Region();
+ 
+ assertNull(region.start());
+ assertNull(region.end());
+ }
+
+ @Test
+ void testParameterizedConstructorAndGetters() {
+ Reference start = new Reference(1, 2);
+ Reference end = new Reference(3, 4);
+ Region region = new Region(start, end);
+ 
+ assertEquals(start, region.start());
+ assertEquals(end, region.end());
+ }
+
+ @Test
+ void testSetStartReference() {
+ Region region = new Region();
+ Reference start = new Reference(1, 2);
+ region.setStartReference(start);
+ 
+ assertEquals(start, region.start());
+ }
+
+ // New tests for the surviving mutants
+ @Test
+ void testSetEndReference() {
+ Region region = new Region();
+ Reference end = new Reference(1, 2);
+ region.setEndReference(end);
+ 
+ assertEquals(end, region.end());
+ }
+
+ @Test
+ void testContainsRegionWithDifferentStartAndEnd() {
+ // This is a different start and end to the previous case
+ Reference start = new Reference(10, 10);
+ Reference end = new Reference(20, 20);
+ Region region = new Region(start, end);
+ 
+ // But we still check a reference that should be within this new range
+ Reference reference = new Reference(15, 15);
+ 
+ assertTrue(region.contains(reference));
  }
 }
