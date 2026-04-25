@@ -1,0 +1,41 @@
+Generate a complete JUnit 5 test class for the Java class below.
+
+Output rules:
+- Output ONLY Java code
+- Do NOT use markdown
+- The first line must be: package {PACKAGE};
+- The test class name must be: {TEST_CLASS_NAME}
+
+Strict requirements:
+- First priority: produce a compilable JUnit 5 test class
+- Use only public methods that exist in the class below
+- Do NOT invent methods, fields, constructors, classes, or helper functions
+- Do NOT use mocks, reflection, random values, comments, or explanations
+- Do NOT test private methods
+- Use assertEquals and assertThrows only
+- At most 5 test methods
+- Keep tests simple and deterministic
+- Do NOT call any method that contains loops waiting on external input or time (e.g. while(true), busy-wait loops)
+- Do NOT call Thread.sleep(), Thread.wait(), or any blocking/sleeping method
+- Do NOT instantiate or reference any java.awt, javax.swing, or GUI component class
+- Do NOT test methods that require user interaction, file I/O, or network access
+
+Public CUT API signatures (allowed calls only):
+{METHOD_SIGNATURES}
+
+Test selection rules:
+- Prefer simple methods with clear inputs and clearly derivable expected outputs
+- Prefer normal cases and obvious boundary cases only
+- If the expected result cannot be clearly derived from the code, skip that test
+- Do NOT guess expected values
+- Do NOT try to maximize coverage by adding risky or uncertain tests
+- If all available methods are blocking, GUI-based, or untestable, output a minimal compilable test class with zero test methods
+
+Java class under test:
+<CODE>
+
+{DEPENDENCY}
+
+{SUCCESSFUL_REFERENCE}
+
+Output the full compilable JUnit 5 test class only.

@@ -1,0 +1,51 @@
+Fix the failing JUnit 5 test class below.
+
+Output rules:
+- Output ONLY Java code
+- Do NOT use markdown
+- The first line must be: package {PACKAGE};
+- The class name must remain: {TEST_CLASS_NAME}
+
+Strict repair requirements:
+- Keep all passing tests unchanged
+- Modify only the failing test methods and the minimum required imports/assertions
+- Do NOT rewrite the whole file unless absolutely necessary
+- Do NOT add new test methods unless necessary for compilation
+- Use only methods that exist in the CUT
+- Use assertEquals and assertThrows only
+- Do NOT invent methods, fields, constructors, classes, or helper functions
+- Do NOT guess expected values
+
+Patch-style repair constraints:
+- Treat this as a minimal patch task, not a rewrite task
+- Change the smallest possible lines to fix compile/runtime/assertion failures
+- Keep method names and test structure stable unless compilation requires change
+- Use only these CUT public API signatures:
+{METHOD_SIGNATURES}
+
+Repair priorities:
+- First priority: make the test class compile
+- Second priority: fix incorrect assertions based on the actual CUT behaviour
+- If a failure shows an actual value, use that information to correct the assertion
+- Do NOT change passing tests
+- Do NOT repeat the same wrong fix
+
+{ANTI_STUCK_HINT}
+
+Java class under test:
+<CODE>
+
+{DEPENDENCY}
+
+Failing test methods:
+{FAILED_METHODS}
+
+Passing tests (copy these EXACTLY into your output, do not modify them):
+{PASSED_TESTS_HINT}
+
+Failure information:
+{FAILURES}
+
+{SUCCESSFUL_REFERENCE}
+
+Output the full corrected JUnit 5 test class. The passing tests above must appear unchanged in your output.

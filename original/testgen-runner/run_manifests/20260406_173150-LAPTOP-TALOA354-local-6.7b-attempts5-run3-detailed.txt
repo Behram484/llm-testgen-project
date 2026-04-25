@@ -1,0 +1,35 @@
+timestamp_local=2026-04-06 17:31:50
+computer_name=LAPTOP-TALOA354
+run_label=local-6.7b-attempts5-run3-detailed
+runner_root=D:\Project\testgen-runner
+project_root=D:/Project/testgen-lab
+config_path=D:\Project\testgen-runner\config\config.json
+config_sha256=3679195EAB32114ADAA3213564B6E05B92E93010C7297A0B4811CA535EAEEFC8
+java_home=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot
+model=deepseek-coder:6.7b
+prompt_profile=semantic_repair
+generation_profile=detailed_behavior
+max_repair_attempts=5
+enable_mutation_augment=True
+artifact_write_mode=minimal
+output_clean=True
+
+[java -version]
+openjdk version "17.0.18" 2026-01-20
+OpenJDK Runtime Environment Temurin-17.0.18+8 (build 17.0.18+8)
+OpenJDK 64-Bit Server VM Temurin-17.0.18+8 (build 17.0.18+8, mixed mode, sharing)
+
+[mvn -version]
+Apache Maven 3.9.12 (848fbb4bf2d427b72bdb2471c22fced7ebd9a7a1)
+Maven home: D:\University of Sussex\3rd Year\apache-maven-3.9.12
+Java version: 17.0.18, vendor: Eclipse Adoptium, runtime: C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot
+Default locale: zh_CN, platform encoding: GBK
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+
+[python --version]
+Python 3.14.3
+
+[ollama list]
+NAME                   ID              SIZE      MODIFIED     
+deepseek-coder:6.7b    ce298d984115    3.8 GB    4 weeks ago     
+llama3.2:3b            a80c4f17acd5    2.0 GB    2 months ago
