@@ -1,2 +1,0 @@
-Missing expected class declaration: SortedMapVectorTest_v1
-Does not reference class under test: SortedMapVector

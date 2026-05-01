@@ -1,19 +1,33 @@
 {
-  "project_root": "D:/Project/testgen-lab",
+  "_comment_paths": "Replace the two path fields below for your machine. See LAB_PC_SETUP_AND_RUN_GUIDE.md (section 7) for examples.",
+  "project_root": "../testgen-lab",
+  "mvn_cmd": "mvn",
+
+  "_comment_target": "These point at one CUT inside testgen-lab; batch_runner.py overrides them per CUT.",
   "cut_path": "src/main/java/org/Region.java",
   "test_output_path": "src/test/java/org/RegionTest.java",
+
+  "_comment_model": "Ollama model tag pulled via `ollama pull`. The 6.7B alternative is deepseek-coder:6.7b-base-q4_K_M.",
   "model": "qwen2.5-coder:32b",
+
+  "_comment_prompts": "prompt_profile selects the repair-stage template; generation_profile selects the initial-generation template (Appendix A in the thesis).",
   "prompt_profile": "semantic_repair",
   "generation_profile": "baseline_behavior",
-  "mvn_cmd": "D:/University of Sussex/3rd Year/apache-maven-3.9.12/bin/mvn.cmd",
-  "enable_programmatic_fix": true,
+
+  "_comment_repair": "max_repair_attempts is 5 in the main study and 15 in the budget-stress condition.",
+  "max_repair_attempts": 5,
   "regenerate_after_same_failures": 2,
+
+  "_comment_features": "Pipeline feature toggles. Default values reproduce the ANSI-fixed configuration described in Chapters 3 and 4.",
+  "enable_programmatic_fix": true,
   "enable_mutation_augment": true,
   "inject_method_signatures_in_prompts": true,
   "enable_cut_api_prepass": true,
   "enable_compile_failure_family_regen": true,
+
+  "_comment_timeouts": "Wall-clock timeouts for Maven and Ollama subprocesses (seconds).",
   "mvn_timeout_sec": 500,
   "ollama_timeout_sec": 300,
-  "max_repair_attempts": 5,
+
   "artifact_write_mode": "minimal"
 }

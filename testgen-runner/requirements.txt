@@ -1,0 +1,14 @@
+# Python runtime requirements for testgen-runner
+#
+# This pipeline uses only the Python standard library at runtime.
+# Tests use the built-in `unittest` module and require no external packages.
+#
+# If you prefer to run tests with pytest instead of `python -m unittest`,
+# uncomment the line below:
+# pytest>=7.0
+#
+# External tools required (NOT pip-installable, see README):
+#   - Python 3.10 or newer
+#   - Java JDK 17
+#   - Apache Maven 3.9.x
+#   - Ollama (for local LLM serving)
