@@ -1,12 +1,51 @@
 # LLM-Based Automated Unit Test Generation
 
-End-to-end pipeline that generates JUnit 5 tests for Java classes using locally
-deployed large language models, validates them via Maven, repairs failures
-through an iterative loop, and assesses test quality with PIT mutation testing.
+End-to-end pipeline that generates JUnit 5 tests for Java classes using **locally deployed** LLMs, validates them by compiling and running them through Maven, repairs failures in an iterative loop, and measures test quality with PIT mutation testing. Nothing leaves the machine: no cloud API, no source code sent to a third party.
 
-This repository accompanies the BSc Computer Science & AI dissertation
-*Automated Test Generation for Existing Code using Large Language Models*
-(University of Sussex, 2026).
+Evaluated on **40 Java classes from the SF110 corpus** across a 2 x 2 x 2 factorial design (model x prompt x repair budget), 3 runs per condition — **2,240 generation results from 56 run folders**.
+
+## Results
+
+**Sanitizing model output was worth more than every other factor tested.** Generated test files contained ANSI escape sequences and terminal control characters, which caused compilation to fail. Stripping them before writing the file nearly doubled the success rate:
+
+| Model | Prompt | Repair budget | Original | After sanitation | Delta |
+|---|---|---:|---:|---:|---:|
+| Qwen2.5-Coder 32B | baseline | 5 | 43.3% | **86.7%** | +43.3 pp |
+| Qwen2.5-Coder 32B | detailed | 5 | 45.0% | 81.7% | +36.7 pp |
+| Qwen2.5-Coder 32B | baseline | 15 | 48.3% | 83.3% | +35.0 pp |
+| Qwen2.5-Coder 32B | detailed | 15 | 44.2% | 80.0% | +35.8 pp |
+| DeepSeek-Coder 6.7B | baseline | 5 | 27.5% | 58.3% | +30.8 pp |
+| DeepSeek-Coder 6.7B | detailed | 5 | 20.8% | 49.2% | +28.3 pp |
+| DeepSeek-Coder 6.7B | baseline | 15 | 30.0% | 63.3% | +33.3 pp |
+| DeepSeek-Coder 6.7B | detailed | 15 | 29.2% | 56.7% | +27.5 pp |
+
+All eight cells improved by at least +27.5 pp, and every cell held up after Holm-Bonferroni correction (Wilcoxon, p < 0.001; per-run McNemar, p < 0.05). Prompt variation moved success by only 3-9 pp — the sanitation fix was roughly 3 to 14 times larger.
+
+**Mutation-guided augmentation raised test effectiveness for the 32B model.** Feeding surviving mutants back to the model and asking for extra test methods improved mean PIT mutation scores by **+14.6 to +19.4 pp** across the four 32B conditions, with no suite scoring worse than it started. The 6.7B model responded inconsistently (+6.6 to +10.3 pp in three cells, -3.3 pp in one, driven by run-to-run variance).
+
+**Two things that did not work**, reported because negative results are part of the finding:
+
+- Extending the repair budget from 5 to 15 attempts produced no statistically detectable effect in any condition (McNemar p > 0.20 in every cell).
+- Neither a simplified "guided-lite" prompt nor reusing the last successful test as context beat its matched comparator (+1.6 pp and -1.6 pp, both inside run-to-run variance).
+
+## How the ANSI problem was found
+
+Under the original pipeline no condition exceeded 50% success, which looked like a model-capability limit and matched prior work reporting 34-62% syntactically invalid LLM-generated tests. That reading was wrong.
+
+Classifying every failure by category showed `repair_exceeded` accounting for 95-99% of failures in the 32B cells — the repair loop was running out of attempts rather than hitting a design problem. Inspecting the rejected files showed why: hidden terminal control characters were being written into the `.java` files, so compilation failed for reasons that had nothing to do with test design, and the repair loop kept trying to fix code that was already correct.
+
+Adding a post-processing step to strip those characters changed both the success rate and the shape of the residual failures: after the fix, 6.7B failures spread across several modes (`repair_exceeded` 28-66%, `repair_validation_fail` 17-49%, `mvn_no_parse` 12-20%) instead of piling into one.
+
+## Pipeline
+
+1. **Generate** — prompt a local model served by Ollama (Qwen2.5-Coder 32B or DeepSeek-Coder 6.7B, both Q4-quantised) for a JUnit 5 test class
+2. **Sanitize** — strip ANSI and control characters before the file is written
+3. **Validate** — compile and run through Maven and Surefire
+4. **Repair** — parse the failure output and re-prompt, up to the configured budget
+5. **Assess** — run PIT mutation analysis on the passing suite
+6. **Augment** — feed surviving mutants back to the model for additional test methods, then re-measure
+
+Evaluation ran on NVIDIA A6000 / A40 GPUs (48 GB VRAM). The Python pipeline uses only the standard library at runtime.
 
 ## Repository layout
 
@@ -124,6 +163,7 @@ This exercises the Maven-output failure parser used by `runner.py`.
 
 ## Notes
 
+- This repository accompanies the BSc Computer Science & AI dissertation *Automated Test Generation for Existing Code using Large Language Models* (University of Sussex, 2026).
 - The `original/` directory keeps a snapshot of the pipeline **before** the
   ANSI/control-character sanitation fix (the headline finding of Chapter 4).
   It is provided for reproducibility of the pre-fix numbers reported in
