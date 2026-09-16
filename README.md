@@ -21,12 +21,20 @@ Evaluated on **40 Java classes from the SF110 corpus** across a 2 x 2 x 2 factor
 
 All eight cells improved by at least +27.5 pp, and every cell held up after Holm-Bonferroni correction (Wilcoxon, p < 0.001; per-run McNemar, p < 0.05). Prompt variation moved success by only 3-9 pp — the sanitation fix was roughly 3 to 14 times larger.
 
+![Success rates before and after ANSI/control-character sanitation, eight conditions](charts/ansi-fix-success.png)
+
 **Mutation-guided augmentation raised test effectiveness for the 32B model.** Feeding surviving mutants back to the model and asking for extra test methods improved mean PIT mutation scores by **+14.6 to +19.4 pp** across the four 32B conditions, with no suite scoring worse than it started. The 6.7B model responded inconsistently (+6.6 to +10.3 pp in three cells, -3.3 pp in one, driven by run-to-run variance).
+
+![Mean paired change in mutation score from augmentation, by configuration and repair budget](charts/mutation-augmentation.png)
 
 **Two things that did not work**, reported because negative results are part of the finding:
 
 - Extending the repair budget from 5 to 15 attempts produced no statistically detectable effect in any condition (McNemar p > 0.20 in every cell).
+
+  ![Success rates at 5 vs 15 repair attempts under the ANSI-fixed pipeline](charts/repair-budget.png)
 - Neither a simplified "guided-lite" prompt nor reusing the last successful test as context beat its matched comparator (+1.6 pp and -1.6 pp, both inside run-to-run variance).
+
+Every number above is reproducible from [`data/`](data/): `grand_summary.md` holds the condition-level tables, `grand_cut_level_results.csv` the raw per-class results from all 56 run folders, and the `grand_*_per_run.csv` files the run-level breakdowns.
 
 ## How the ANSI problem was found
 

@@ -1,0 +1,5 @@
+﻿"attempts","chart_label","model","prompt","original_rate_percent_1dp","ansi_fixed_rate_percent_1dp","original_rate_percent_exact","ansi_fixed_rate_percent_exact","original_success","ansi_fixed_success","total_per_condition","delta_pp_exact"
+"5","32B baseline","32B","baseline","43.3","86.7","43.33","86.67","52","104","120","43.34"
+"5","32B detailed","32B","detailed","45","81.7","45","81.67","54","98","120","36.67"
+"5","6.7B baseline","6.7B","baseline","27.5","58.3","27.5","58.33","33","70","120","30.83"
+"5","6.7B detailed","6.7B","detailed","20.8","49.2","20.83","49.17","25","59","120","28.34"

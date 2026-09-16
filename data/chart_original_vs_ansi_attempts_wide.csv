@@ -1,0 +1,5 @@
+﻿"chart_label","original_5_attempts","ansi_fixed_5_attempts","original_15_attempts","ansi_fixed_15_attempts","delta_ansi_vs_original_5_pp","delta_ansi_vs_original_15_pp"
+"32B baseline","43.3","86.7","48.3","83.3","43.34","35"
+"32B detailed","45","81.7","44.2","80","36.67","35.83"
+"6.7B baseline","27.5","58.3","30","63.3","30.83","33.33"
+"6.7B detailed","20.8","49.2","29.2","56.7","28.34","27.5"

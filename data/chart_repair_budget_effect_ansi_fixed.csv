@@ -1,0 +1,5 @@
+﻿chart_label,5 attempts,15 attempts,ansi_fixed_5_attempts_success,ansi_fixed_15_attempts_success,total_per_condition,delta_15_minus_5_pp_exact
+32B baseline,86.7,83.3,104,100,120,-3.34
+32B detailed,81.7,80,98,96,120,-1.67
+6.7B baseline,58.3,63.3,70,76,120,5
+6.7B detailed,49.2,56.7,59,68,120,7.5
